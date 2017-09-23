@@ -28,3 +28,4 @@ target/
 
 ### NodeJs ###
 node_modules/
+node/
