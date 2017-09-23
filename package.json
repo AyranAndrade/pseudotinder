@@ -9,7 +9,8 @@
   "author": "Ayran Andrade",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-cli": "^1.4.0"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
