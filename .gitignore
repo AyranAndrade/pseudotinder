@@ -29,3 +29,9 @@ target/
 ### NodeJs ###
 node_modules/
 node/
+
+### Nohup ###
+nohup.out
+
+### Production COnfiguration ###
+src/main/resources/application-production.properties
