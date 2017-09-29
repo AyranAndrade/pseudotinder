@@ -33,5 +33,11 @@ node/
 ### Nohup ###
 nohup.out
 
-### Production COnfiguration ###
+### Production Configuration ###
 src/main/resources/application-production.properties
+
+### Bootstrap CSS ###
+src/main/resources/static/css/bootstrap.min.css
+
+### Random Files ###
+customs.json
