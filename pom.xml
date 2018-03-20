@@ -56,6 +56,12 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
         
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>        
+        
     </dependencies>
 
     <build>
@@ -65,40 +71,40 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         
-              <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <!-- Use the latest released version:
-                https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
-                <version>1.6</version>
-                <configuration>
-                    <nodeVersion>v8.5.0</nodeVersion>
-                </configuration>                    
-                <executions>
-                    
-                    <execution>
-                        <id>install node and npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                        </goals>
-                    </execution>
-                    
-                    <execution>
-                        <id>npm install</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                    </execution> 
-                    
-                    <execution>
-                        <id>gulp build</id>
-                        <goals>
-                            <goal>gulp</goal>
-                        </goals>
-                    </execution>                                                                                              
-                    
-                </executions>
-            </plugin>        
+            <plugin>
+              <groupId>com.github.eirslett</groupId>
+              <artifactId>frontend-maven-plugin</artifactId>
+              <!-- Use the latest released version:
+              https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
+              <version>1.6</version>
+              <configuration>
+                  <nodeVersion>v8.5.0</nodeVersion>
+              </configuration>                    
+              <executions>
+
+                  <execution>
+                      <id>install node and npm</id>
+                      <goals>
+                          <goal>install-node-and-npm</goal>
+                      </goals>
+                  </execution>
+
+                  <execution>
+                      <id>npm install</id>
+                      <goals>
+                          <goal>npm</goal>
+                      </goals>
+                  </execution> 
+
+                  <execution>
+                      <id>gulp build</id>
+                      <goals>
+                          <goal>gulp</goal>
+                      </goals>
+                  </execution>                                                                                              
+
+              </executions>
+          </plugin>        
         </plugins>        
     </build>
 

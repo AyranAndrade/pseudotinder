@@ -1,4 +1,4 @@
-package br.com.ayranandrade.agenda;
+package br.com.ayranandrade.pseudotinder;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
