@@ -1,5 +1,5 @@
 {
-  "name": "agenda",
+  "name": "pseudotinder",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,10 +10,10 @@
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-cli": "^1.4.0"
+    "gulp-cli": "^2.0.1"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-beta",
-    "jquery": "^3.2.1"
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1"
   }
 }
