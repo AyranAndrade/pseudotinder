@@ -10,10 +10,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * This class represents a gender.
- * @author ayran
- */
 @Entity
 @Table(name = "genders")
 public class Gender {

@@ -12,10 +12,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * This class represents a city.
- * @author ayran
- */
 @Entity
 @Table(name = "cities")
 public class City {

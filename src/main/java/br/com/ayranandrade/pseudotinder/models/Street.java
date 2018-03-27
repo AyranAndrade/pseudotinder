@@ -12,10 +12,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * This class represents a street.
- * @author ayran
- */
 @Entity
 @Table(name = "streets")
 public class Street {
