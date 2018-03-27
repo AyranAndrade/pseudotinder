@@ -20,7 +20,8 @@ import javax.validation.constraints.Size;
 @Table(name = "streets")
 public class Street {
     
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id 
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "street_id")
   private Integer id;
   
