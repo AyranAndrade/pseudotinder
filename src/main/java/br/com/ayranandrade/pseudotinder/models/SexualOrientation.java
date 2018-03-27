@@ -27,7 +27,7 @@ public class SexualOrientation {
 
   @Column(name = "created_at", nullable = false)
   @NotNull
-  private Instant createdAt;
+  private Instant createdAt = Instant.now();
 
   public Integer getId() {
     return id;

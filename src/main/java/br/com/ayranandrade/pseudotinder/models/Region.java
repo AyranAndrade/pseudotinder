@@ -28,7 +28,7 @@ public class Region {
   
   @Column(nullable = false, name = "created_at")
   @NotNull
-  private Instant createdAt;
+  private Instant createdAt = Instant.now();
   
   @ManyToOne
   @JoinColumn(name = "city_id", referencedColumnName = "city_id")

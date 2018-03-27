@@ -28,7 +28,7 @@ public class Street {
   
   @Column(nullable = false, name = "created_at")
   @NotNull
-  private Instant createdAt;
+  private Instant createdAt = Instant.now();
   
   @ManyToOne
   @JoinColumn(name = "region_id", referencedColumnName = "region_id")
