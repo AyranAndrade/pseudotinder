@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,7 +22,7 @@ public class City {
   @Column(name = "city_id")
   private Integer id;
     
-  @NotNull
+  @NotBlank
   @Size(max = 30)
   @Column(nullable = false, length = 30)
   private String name;

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -20,7 +21,7 @@ public class Gender {
   private Integer id;
   
   @Column(nullable = false, length = 20)
-  @NotNull
+  @NotBlank
   @Size(max = 20)
   private String name;
   

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,7 +20,7 @@ public class State {
   @Column(name = "state_id")
   private Integer id;
   
-  @NotNull
+  @NotBlank
   @Size(max = 30)
   @Column(nullable = false, length = 30, unique = true)
   private String name;
