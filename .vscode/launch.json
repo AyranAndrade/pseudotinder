@@ -6,14 +6,15 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch)-Application<pseudotinder>",
+            "name": "Launch",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopOnEntry": false,
             "mainClass": "br.com.ayranandrade.pseudotinder.Application",
             "projectName": "pseudotinder",
-            "args": ""
+            "args": "",
+            "vmArgs": "-Dspring.profiles.active=development"
         },
         {
             "type": "java",
