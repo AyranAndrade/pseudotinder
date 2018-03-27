@@ -1,6 +1,5 @@
 package br.com.ayranandrade.pseudotinder.models;
 
-import java.io.Serializable;
 import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,48 +11,47 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
+ * This class represents a gender.
  * @author ayran
  */
 @Entity
 @Table(name = "genders")
-public class Gender implements Serializable {
+public class Gender {
     
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "gender_id")
-    private Integer id;
-    
-    @Column(nullable = false, length = 20)
-    @NotNull
-    @Size(max = 20)
-    private String name;
-    
-    @Column(name = "created_at", nullable = false)
-    @NotNull
-    private Instant createdAt;
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "gender_id")
+  private Integer id;
+  
+  @Column(nullable = false, length = 20)
+  @NotNull
+  @Size(max = 20)
+  private String name;
+  
+  @Column(name = "created_at", nullable = false)
+  @NotNull
+  private Instant createdAt;
 
-    public Integer getId() {
-        return id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
+  public Instant getCreatedAt() {
+    return createdAt;
+  }
 
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
-    }
-    
+  public void setCreatedAt(Instant createdAt) {
+    this.createdAt = createdAt;
+  }
 }

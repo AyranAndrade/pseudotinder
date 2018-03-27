@@ -1,6 +1,5 @@
 package br.com.ayranandrade.pseudotinder.models;
 
-import java.io.Serializable;
 import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,51 +13,51 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
+ * This class represents a city.
  * @author ayran
  */
 @Entity
 @Table(name = "cities")
-public class City implements Serializable {
+public class City {
     
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "city_id")
-    private Integer id;
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "city_id")
+  private Integer id;
     
-    @NotNull
-    @Size(max = 30)
-    @Column(nullable = false, length = 30)
-    private String name;
+  @NotNull
+  @Size(max = 30)
+  @Column(nullable = false, length = 30)
+  private String name;
     
-    @NotNull
-    @Column(name = "created_at", nullable = false)
-    private Instant createdAt;
+  @NotNull
+  @Column(name = "created_at", nullable = false)
+  private Instant createdAt;
     
-    @ManyToOne
-    @JoinColumn(name="state_id", referencedColumnName="state_id")
-    private State state;
+  @ManyToOne
+  @JoinColumn(name = "state_id", referencedColumnName = "state_id")
+  private State state;
 
-    public Integer getId() {
-        return id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
+  public Instant getCreatedAt() {
+    return createdAt;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
-    }
+  public void setCreatedAt(Instant createdAt) {
+    this.createdAt = createdAt;
+  }
 }

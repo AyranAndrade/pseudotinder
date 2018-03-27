@@ -1,6 +1,5 @@
 package br.com.ayranandrade.pseudotinder.models;
 
-import java.io.Serializable;
 import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,60 +13,59 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
+ * This class represents a region.
  * @author ayran
  */
 @Entity
 @Table(name = "regions")
-public class Region implements Serializable {
+public class Region {
     
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "region_id")
-    private Integer id;
-    
-    @Column(nullable = false, length = 30)
-    @NotNull
-    @Size(max = 30)
-    private String name;
-    
-    @Column(nullable = false, name = "created_at")
-    @NotNull
-    private Instant createdAt;
-    
-    @ManyToOne
-    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
-    private City city;
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "region_id")
+  private Integer id;
+  
+  @Column(nullable = false, length = 30)
+  @NotNull
+  @Size(max = 30)
+  private String name;
+  
+  @Column(nullable = false, name = "created_at")
+  @NotNull
+  private Instant createdAt;
+  
+  @ManyToOne
+  @JoinColumn(name = "city_id", referencedColumnName = "city_id")
+  private City city;
 
-    public Integer getId() {
-        return id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
+  public Instant getCreatedAt() {
+    return createdAt;
+  }
 
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
-    }
+  public void setCreatedAt(Instant createdAt) {
+    this.createdAt = createdAt;
+  }
 
-    public City getCity() {
-        return city;
-    }
+  public City getCity() {
+    return city;
+  }
 
-    public void setCity(City city) {
-        this.city = city;
-    }
-    
+  public void setCity(City city) {
+    this.city = city;
+  }
 }
