@@ -4,13 +4,13 @@ import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "sexual_orientations")
@@ -21,10 +21,9 @@ public class SexualOrientation {
   @Column(name = "sexual_orientation_id")
   private Integer id;
 
-  @Column(nullable = false, length = 30, unique = true)
-  @NotBlank
-  @Size(max = 30)
-  private String name;
+  @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
+  private SexualOrientationType name;
 
   @Column(name = "created_at", nullable = false)
   @NotNull
@@ -39,10 +38,10 @@ public class SexualOrientation {
   }
 
   public String getName() {
-    return name;
+    return name.getOrientation();
   }
 
-  public void setName(String name) {
+  public void setName(SexualOrientationType name) {
     this.name = name;
   }
 
