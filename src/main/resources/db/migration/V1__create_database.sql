@@ -101,7 +101,8 @@ CREATE TABLE messages (
 );
 
 CREATE TABLE matches (
-	PRIMARY KEY (people_id, people_judged_id),
+	PRIMARY KEY (match_id),
+    match_id		 INTEGER			NOT NULL	AUTO_INCREMENT,
     people_id 		 INTEGER 			NOT NULL,
 	people_judged_id INTEGER 			NOT NULL,
 		FOREIGN KEY (people_id) 		REFERENCES people (people_id),
