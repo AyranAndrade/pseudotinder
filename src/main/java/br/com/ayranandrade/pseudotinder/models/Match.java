@@ -22,11 +22,11 @@ public class Match {
   @Column(name = "match_id")
   private Integer id;
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER, optional = false)
   @JoinColumn(name = "people_id")
   private People people;
   
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER, optional = false)
   @JoinColumn(name = "people_judged_id")
   private People peopleJudged;
 

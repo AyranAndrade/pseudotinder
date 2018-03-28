@@ -3,6 +3,7 @@ package br.com.ayranandrade.pseudotinder.models;
 import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class Region {
   @NotNull
   private Instant createdAt = Instant.now();
   
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER, optional = false)
   @JoinColumn(name = "city_id", referencedColumnName = "city_id")
   private City city;
 
