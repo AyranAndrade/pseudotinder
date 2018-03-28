@@ -3,13 +3,13 @@ package br.com.ayranandrade.pseudotinder.models;
 import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "genders")
@@ -20,10 +20,10 @@ public class Gender {
   @Column(name = "gender_id")
   private Integer id;
   
-  @Column(nullable = false, length = 20)
-  @NotBlank
-  @Size(max = 20)
-  private String name;
+  @Column(nullable = false)
+  @NotNull
+  @Enumerated(EnumType.STRING)
+  private GenderType name;
   
   @Column(name = "created_at", nullable = false)
   @NotNull
@@ -38,10 +38,10 @@ public class Gender {
   }
 
   public String getName() {
-    return name;
+    return name.getGenderName();
   }
 
-  public void setName(String name) {
+  public void setName(GenderType name) {
     this.name = name;
   }
 
