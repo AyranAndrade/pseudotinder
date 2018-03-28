@@ -72,7 +72,7 @@ public class People {
   private Gender gender;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "profesion_id")
+  @JoinColumn(name = "profession_id")
   private Profession profession;
 
   @ManyToOne(fetch = FetchType.LAZY)
