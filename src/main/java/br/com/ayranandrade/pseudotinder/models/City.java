@@ -1,6 +1,8 @@
 package br.com.ayranandrade.pseudotinder.models;
 
 import java.time.Instant;
+import java.util.Optional;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,6 +38,13 @@ public class City {
   @JoinColumn(name = "state_id", referencedColumnName = "state_id")
   private State state;
 
+  private City() {}
+
+  public City(String name) {
+    this.name = Optional.ofNullable(name)
+    .orElseThrow(() -> new IllegalArgumentException("City's name can not be null."));
+  }
+
   public Integer getId() {
     return id;
   }
@@ -46,14 +55,6 @@ public class City {
 
   public Instant getCreatedAt() {
     return createdAt;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public void setCreatedAt(Instant createdAt) {
