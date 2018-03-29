@@ -57,7 +57,18 @@ public class City {
     return createdAt;
   }
 
+  /**
+   * Set the createdAt different than when this object was created. 
+   * This value needs to be in the past.
+   */
   public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
+    Instant createdAtNotNull = Optional.ofNullable(createdAt)
+        .orElseThrow(() -> new IllegalArgumentException("City's createdAt can not be null."));
+    if (createdAtNotNull.isBefore(Instant.now())) {
+      this.createdAt = createdAtNotNull;
+    } else {
+      throw new 
+          IllegalArgumentException("The instant of creation of a city can not be in the past.");
+    }
   }
 }
