@@ -34,6 +34,8 @@ public class AgeRange {
     }
   }
 
+  private AgeRange() {}
+
   public Integer getStart() {
     return start;
   }
