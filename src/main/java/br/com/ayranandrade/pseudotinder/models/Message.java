@@ -1,6 +1,7 @@
 package br.com.ayranandrade.pseudotinder.models;
 
 import java.time.Instant;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,51 +46,66 @@ public class Message {
   @NotNull
   private Boolean active = true;
 
-  public Integer getId() {
-    return id;
+  /**
+  * This constructor is only for JPA use.
+  */
+  private Message() {}
+
+  public Message(String message, People from, People to) {
+    this.from = Optional.ofNullable(from)
+        .orElseThrow(() -> new IllegalArgumentException("The senter from message " 
+        + "can not be null."));
+
+    this.to = Optional.ofNullable(to)
+      .orElseThrow(() -> new IllegalArgumentException("The receiver from message " 
+      + "can not be null."));
+
+    String messageNotNull = Optional.ofNullable(message)
+        .orElseThrow(() -> new IllegalArgumentException("The message can not be null."));
+
+    if (!messageNotNull.isEmpty()) {
+      this.message = messageNotNull;
+    } else {
+      throw new IllegalArgumentException("The message can not be empty.");
+    }
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public Integer getId() {
+    return id;
   }
 
   public Boolean getActive() {
     return active;
   }
 
-  public void setActive(Boolean active) {
-    this.active = active;
-  }
-
   public People getFrom() {
     return from;
-  }
-
-  public void setFrom(People from) {
-    this.from = from;
   }
 
   public People getTo() {
     return to;
   }
 
-  public void setTo(People to) {
-    this.to = to;
-  }
-
   public String getMessage() {
     return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
   }
 
   public Instant getSentAt() {
     return sentAt;
   }
 
+  /**
+  * Set the sentAt different than when this object was created. 
+  * This value needs to be in the past.
+  */
   public void setSentAt(Instant sentAt) {
-    this.sentAt = sentAt;
+    Instant sentAtNotNull = Optional.ofNullable(sentAt)
+        .orElseThrow(() -> new IllegalArgumentException("Message's sentAt can not be null."));
+    if (sentAtNotNull.isBefore(Instant.now())) {
+      this.sentAt = sentAtNotNull;
+    } else {
+      throw new 
+          IllegalArgumentException("The instant of creation of a message can not be in the past.");
+    }
   }
 }

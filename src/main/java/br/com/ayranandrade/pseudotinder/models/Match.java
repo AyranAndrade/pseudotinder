@@ -1,6 +1,7 @@
 package br.com.ayranandrade.pseudotinder.models;
 
 import java.time.Instant;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,43 +39,57 @@ public class Match {
   @NotNull
   private Instant createdAt = Instant.now();
 
-  public Integer getId() {
-    return id;
+  /**
+  * This constructor is only for JPA use.
+  */
+  private Match() {}
+
+  public Match(People whoIsJudging, People whoIsBeingJudged, Boolean liked) {
+    this.people = Optional.ofNullable(whoIsJudging)
+        .orElseThrow(() -> new IllegalArgumentException("The argument whoIsJudging " 
+        + "can not be null."));
+
+    this.peopleJudged = Optional.ofNullable(whoIsBeingJudged)
+      .orElseThrow(() -> new IllegalArgumentException("The argument whoIsBeingJudged " 
+      + "can not be null."));
+
+    this.liked = Optional.ofNullable(liked)
+      .orElseThrow(() -> new IllegalArgumentException("The argument liked " 
+      + "can not be null."));
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public Integer getId() {
+    return id;
   }
 
   public Instant getCreatedAt() {
     return createdAt;
   }
 
+  /**
+   * Set the createdAt different than when this object was created. 
+   * This value needs to be in the past.
+   */
   public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
+    Instant createdAtNotNull = Optional.ofNullable(createdAt)
+        .orElseThrow(() -> new IllegalArgumentException("Match's createdAt can not be null."));
+    if (createdAtNotNull.isBefore(Instant.now())) {
+      this.createdAt = createdAtNotNull;
+    } else {
+      throw new 
+          IllegalArgumentException("The instant of creation of a match can not be in the past.");
+    }
   }
 
   public Boolean getLiked() {
     return liked;
   }
 
-  public void setLiked(Boolean liked) {
-    this.liked = liked;
-  }
-
   public People getPeople() {
     return people;
   }
 
-  public void setPeople(People people) {
-    this.people = people;
-  }
-
   public People getPeopleJudged() {
     return peopleJudged;
-  }
-
-  public void setPeopleJudged(People peopleJudged) {
-    this.peopleJudged = peopleJudged;
   }
 }

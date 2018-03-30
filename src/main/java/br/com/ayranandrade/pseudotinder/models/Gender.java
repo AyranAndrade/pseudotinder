@@ -1,6 +1,8 @@
 package br.com.ayranandrade.pseudotinder.models;
 
 import java.time.Instant;
+import java.util.Arrays;
+import java.util.Optional;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -29,27 +31,57 @@ public class Gender {
   @NotNull
   private Instant createdAt = Instant.now();
 
-  public Integer getId() {
-    return id;
+  /**
+   * This constructor is only for JPA use.
+   */
+  private Gender() {}
+
+  public Gender(GenderType name) {
+    this.name = Optional.ofNullable(name)
+        .orElseThrow(() -> new IllegalArgumentException("Name of gender can not be null."));
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  /**
+   * Given a name not null, this constructor looks for a GenderType 
+   * that value be equal to name ignoring case. Otherwise, a IllegalArgumentException is thrown.
+   */
+  public Gender(String name) {
+    String nameNotNull = Optional.ofNullable(name)
+        .orElseThrow(() -> new IllegalArgumentException("Name of gender can not be null."));
+
+    this.name = Arrays.asList(GenderType.values()).stream()
+        .filter(g -> g.getGenderName().equalsIgnoreCase(nameNotNull))
+        .findFirst()
+        .orElseThrow(() -> new IllegalArgumentException("Name of gender needs " 
+        + "to be a valid value contained in GenderType enum."));
+  }
+
+  public Integer getId() {
+    return id;
   }
 
   public String getName() {
     return name.getGenderName();
   }
 
-  public void setName(GenderType name) {
-    this.name = name;
-  }
-
   public Instant getCreatedAt() {
     return createdAt;
   }
 
+  /**
+   * Set the moment of creation of gender. This value can not be null and needs to be in past.
+   */
   public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
+    Instant createdAtNotNull = Optional.ofNullable(createdAt)
+        .orElseThrow(() -> new IllegalArgumentException("The moment of creation " 
+        + "from a gender can not be null."));
+
+    if (createdAtNotNull.isBefore(Instant.now())) {
+      this.createdAt = createdAtNotNull;
+    } else {
+      throw new IllegalArgumentException("The moment of creation from a gender needs " 
+      + "to be in past.");
+    }
+    
   }
 }
