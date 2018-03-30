@@ -79,44 +79,26 @@ public class People {
   @JoinColumn(name = "street_id")
   private Street street;
 
+  private People() {}
+
   public Integer getId() {
     return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
   }
 
   public String getAboutMe() {
     return aboutMe;
   }
 
-  public void setAboutMe(String aboutMe) {
-    this.aboutMe = aboutMe;
-  }
-
   public Boolean getActive() {
     return active;
-  }
-
-  public void setActive(Boolean active) {
-    this.active = active;
   }
 
   public AgeRange getAgeRange() {
     return ageRange;
   }
 
-  public void setAgeRange(AgeRange ageRange) {
-    this.ageRange = ageRange;
-  }
-
   public LocalDate getBirthDate() {
     return birthDate;
-  }
-
-  public void setBirthDate(LocalDate birthDate) {
-    this.birthDate = birthDate;
   }
 
   public Instant getCreatedAt() {
@@ -131,55 +113,27 @@ public class People {
     return eloScore;
   }
 
-  public void setEloScore(Integer eloScore) {
-    this.eloScore = eloScore;
-  }
-
   public Gender getGender() {
     return gender;
-  }
-
-  public void setGender(Gender gender) {
-    this.gender = gender;
   }
 
   public BigDecimal getMaxDistance() {
     return maxDistance;
   }
 
-  public void setMaxDistance(BigDecimal maxDistance) {
-    this.maxDistance = maxDistance;
-  }
-
   public String getName() {
     return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public Profession getProfession() {
     return profession;
   }
 
-  public void setProfession(Profession profession) {
-    this.profession = profession;
-  }
-
   public SexualOrientation getSexualOrientation() {
     return sexualOrientation;
   }
 
-  public void setSexualOrientation(SexualOrientation sexualOrientation) {
-    this.sexualOrientation = sexualOrientation;
-  }
-
   public Street getStreet() {
     return street;
-  }
-
-  public void setStreet(Street street) {
-    this.street = street;
   }
 }
