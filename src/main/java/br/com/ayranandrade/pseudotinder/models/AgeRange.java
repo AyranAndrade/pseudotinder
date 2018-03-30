@@ -34,6 +34,9 @@ public class AgeRange {
     }
   }
 
+  /**
+   * This constructor is only for JPA use.
+   */
   private AgeRange() {}
 
   public Integer getStart() {

@@ -38,6 +38,9 @@ public class City {
   @JoinColumn(name = "state_id", referencedColumnName = "state_id")
   private State state;
 
+  /**
+   * This constructor is only for JPA use.
+   */
   private City() {}
 
   public City(String name) {
