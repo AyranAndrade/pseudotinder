@@ -1,6 +1,7 @@
 package br.com.ayranandrade.pseudotinder.models;
 
 import java.time.Instant;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,43 +42,59 @@ public class Photo {
   @JoinColumn(name = "people_id")
   private People uploader;
 
-  public Integer getId() {
-    return id;
+  /**
+  * This constructor is only for JPA use.
+  */
+  private Photo() {}
+
+  public Photo(String urlOrPath, People uploader) {
+    String urlOrPathNotNull = Optional.ofNullable(urlOrPath)
+        .orElseThrow(() -> new IllegalArgumentException("The url or path from photo " 
+        + "can not be null."));
+
+    if (!urlOrPathNotNull.isEmpty()) {
+      this.urlOrPath = urlOrPathNotNull;
+    } else {
+      throw new IllegalArgumentException("The url or path from photo can not be empty.");
+    }
+
+    this.uploader = Optional.ofNullable(uploader)
+        .orElseThrow(() -> new IllegalArgumentException("The uploader from photo " 
+        + "can not be null."));
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public Integer getId() {
+    return id;
   }
 
   public Boolean getActive() {
     return active;
   }
 
-  public void setActive(Boolean active) {
-    this.active = active;
-  }
-
   public Instant getUploadAt() {
     return uploadAt;
   }
 
+  /**
+  * Set the sentAt different than when this object was created. 
+  * This value needs to be in the past.
+  */
   public void setUploadAt(Instant uploadAt) {
-    this.uploadAt = uploadAt;
+    Instant uploadAtNotNull = Optional.ofNullable(uploadAt)
+        .orElseThrow(() -> new IllegalArgumentException("Photo's uploadAt can not be null."));
+    if (uploadAtNotNull.isBefore(Instant.now())) {
+      this.uploadAt = uploadAtNotNull;
+    } else {
+      throw new 
+          IllegalArgumentException("The instant of creation of a photo can not be in the past.");
+    }
   }
 
   public People getUploader() {
     return uploader;
   }
 
-  public void setUploader(People uploader) {
-    this.uploader = uploader;
-  }
-
   public String getUrlOrPath() {
     return urlOrPath;
-  }
-
-  public void setUrlOrPath(String urlOrPath) {
-    this.urlOrPath = urlOrPath;
   }
 }
