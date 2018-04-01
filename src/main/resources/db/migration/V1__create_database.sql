@@ -58,6 +58,7 @@ CREATE TABLE people (
 	PRIMARY KEY (people_id),
     people_id 				INTEGER 		NOT NULL 	AUTO_INCREMENT,
     name 					VARCHAR(60) 	NOT NULL,
+    username				VARCHAR(20)		NOT NULL	UNIQUE,
     birth_date				DATE			NOT NULL,
     about_me				VARCHAR(1000)	NOT NULL,
     elo_score_rating		INTEGER			NOT NULL,
@@ -107,6 +108,7 @@ CREATE TABLE matches (
 	people_judged_id INTEGER 			NOT NULL,
 		FOREIGN KEY (people_id) 		REFERENCES people (people_id),
         FOREIGN KEY (people_judged_id) 	REFERENCES people (people_id),
+        UNIQUE(people_id, people_judged_id),
 	liked 			 BOOLEAN			NOT NULL,
     created_at		 TIMESTAMP			NOT NULL 	DEFAULT NOW()
 );
