@@ -5,7 +5,7 @@ import br.com.ayranandrade.pseudotinder.repositories.PeopleRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class PeopleServiceImpl implements PeopleService {
+public class DefaultPeopleService implements PeopleService {
 
   @Autowired
   private PeopleRepository peopleRep;

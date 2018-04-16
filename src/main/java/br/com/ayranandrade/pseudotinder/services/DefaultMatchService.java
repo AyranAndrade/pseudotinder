@@ -6,7 +6,7 @@ import br.com.ayranandrade.pseudotinder.repositories.MatchRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MatchServiceImpl implements MatchService {
+public class DefaultMatchService implements MatchService {
 
   @Autowired
   private MatchRepository matchRep;
