@@ -1,8 +1,8 @@
 package br.com.ayranandrade.pseudotinder.controllers;
 
-import br.com.ayranandrade.pseudotinder.models.People;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class IdentificationController {
   
   @PostMapping("/login")
-  public String login(People people) {
-    System.out.println(people);
-    System.out.println(people.getUsername());
+  public String login(@RequestParam String username) {
+    System.out.println(username);
     return "login";
   }
 }

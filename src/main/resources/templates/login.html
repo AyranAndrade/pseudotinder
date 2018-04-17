@@ -7,9 +7,9 @@
         <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
     </head>
     <body>
-        <form action="#" th:action="@{/login}" th:object="${people}" method="post">
+        <form action="#" th:action="@{/login}" method="post">
             <label for="username">Nome de usuário:</label>
-            <input id="username" type="text" th:field="*{username}"/>
+            <input id="username" name="username" type="text"/>
             <input type="submit" value="Entrar" />
         </form>
     </body>
