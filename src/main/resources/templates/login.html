@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Bem-vindo ao Pseudotinder!</title>
         <meta charset="UTF-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form action="#" th:action="@{/login}" th:object="${people}" method="post">
+            <label for="username">Nome de usuário:</label>
+            <input id="username" type="text" th:field="*{username}"/>
+            <input type="submit" value="Entrar" />
+        </form>
     </body>
 </html>
