@@ -13,6 +13,6 @@ public class Application implements CommandLineRunner {
 
   @Override
   public void run(String... args) {
-    System.out.println("Application avaible in http://localhost:8080");
+    System.out.println("Application available in http://localhost:8080");
   }
 }
