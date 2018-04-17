@@ -41,6 +41,11 @@ public class People {
   @NotBlank
   @Size(max = 1000)
   private String aboutMe;
+  
+  @Column(nullable = false, length = 20, unique = true)
+  @NotBlank
+  @Size(max = 20)
+  private String username;
 
   @Column(name = "elo_score_rating", nullable = false)
   @NotNull
@@ -79,7 +84,7 @@ public class People {
   @JoinColumn(name = "street_id")
   private Street street;
 
-  private People() {}
+  public People() {}
 
   public Integer getId() {
     return id;
@@ -135,5 +140,70 @@ public class People {
 
   public Street getStreet() {
     return street;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  @Override
+  public String toString() {
+    return "People{" + "id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", aboutMe=" 
+            + aboutMe + ", username=" + username + ", eloScore=" + eloScore + ", maxDistance=" 
+            + maxDistance + ", createdAt=" + createdAt + ", active=" + active + ", ageRange=" 
+            + ageRange + ", sexualOrientation=" + sexualOrientation + ", gender=" + gender 
+            + ", profession=" + profession + ", street=" + street + '}';
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setBirthDate(LocalDate birthDate) {
+    this.birthDate = birthDate;
+  }
+
+  public void setAboutMe(String aboutMe) {
+    this.aboutMe = aboutMe;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public void setEloScore(Integer eloScore) {
+    this.eloScore = eloScore;
+  }
+
+  public void setMaxDistance(BigDecimal maxDistance) {
+    this.maxDistance = maxDistance;
+  }
+
+  public void setActive(Boolean active) {
+    this.active = active;
+  }
+
+  public void setAgeRange(AgeRange ageRange) {
+    this.ageRange = ageRange;
+  }
+
+  public void setSexualOrientation(SexualOrientation sexualOrientation) {
+    this.sexualOrientation = sexualOrientation;
+  }
+
+  public void setGender(Gender gender) {
+    this.gender = gender;
+  }
+
+  public void setProfession(Profession profession) {
+    this.profession = profession;
+  }
+
+  public void setStreet(Street street) {
+    this.street = street;
   }
 }
