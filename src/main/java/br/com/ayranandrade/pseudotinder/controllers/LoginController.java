@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author ayran
  */
 @Controller
-public class IdentificationController {
+public class LoginController {
   
   @Autowired
   private PeopleService peopleService;
