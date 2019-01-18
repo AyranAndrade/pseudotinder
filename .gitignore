@@ -42,3 +42,5 @@ src/main/resources/static/css/bootstrap.min.css
 ### Random Files ###
 customs.json
 etc/
+*.txt
+*.png
