@@ -44,3 +44,4 @@ customs.json
 etc/
 *.txt
 *.png
+/bin/
