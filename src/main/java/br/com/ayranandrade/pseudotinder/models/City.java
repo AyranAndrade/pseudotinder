@@ -1,7 +1,6 @@
 package br.com.ayranandrade.pseudotinder.models;
 
 import java.time.Instant;
-import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,46 +35,13 @@ public class City {
     
   @ManyToOne(fetch = FetchType.EAGER, optional = false)
   @JoinColumn(name = "state_id", referencedColumnName = "state_id")
-  private State state;
+  private State stateInWhichTheCityLies;
 
-  /**
-   * This constructor is only for JPA use.
-   */
-  private City() {}
+  protected City() {}
 
-  public City(String name) {
-    this.name = Optional.ofNullable(name)
-    .orElseThrow(() -> new IllegalArgumentException("City's name can not be null."));
-  }
-
-  public Integer getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public State getState() {
-    return state;
-  }
-
-  public Instant getCreatedAt() {
-    return createdAt;
-  }
-
-  /**
-   * Set the createdAt different than when this object was created. 
-   * This value needs to be in the past.
-   */
-  public void setCreatedAt(Instant createdAt) {
-    Instant createdAtNotNull = Optional.ofNullable(createdAt)
-        .orElseThrow(() -> new IllegalArgumentException("City's createdAt can not be null."));
-    if (createdAtNotNull.isBefore(Instant.now())) {
-      this.createdAt = createdAtNotNull;
-    } else {
-      throw new 
-          IllegalArgumentException("The instant of creation of a city can not be in the past.");
-    }
+  @Override
+  public String toString() {
+	  return "City [id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", stateInWhichTheCityLies="
+			  + stateInWhichTheCityLies + "]";
   }
 }
