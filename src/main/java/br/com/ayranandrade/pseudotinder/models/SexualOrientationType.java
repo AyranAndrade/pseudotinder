@@ -2,7 +2,7 @@ package br.com.ayranandrade.pseudotinder.models;
 
 public enum SexualOrientationType {
   HETEROSEXUAL("heterosexual"),
-  HOMOSEXUL("homosexual"),
+  HOMOSEXUAL("homosexual"),
   BISEXUAL("bisexual"),
   ASEXUAL("asexual"),
   PANSEXUAL("pansexual");
