@@ -21,3 +21,7 @@ Usar também o devtools do Spring, para eu ter hot reloading do meu código.
 
 1. Compile com ```mvn package -Dspring.profiles.active=development``` (Para ambiente de desenvolvimento)
 2. Execute com ```java -jar -Dspring.profiles.active=development NOME_DO_ARQUIVO_JAR.jar```
+
+## Como rodar todos os testes do projeto ##
+
+Execute ```mvn test -Dspring.profiles.active=development```
