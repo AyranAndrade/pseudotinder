@@ -15,3 +15,8 @@ Usar também o devtools do Spring, para eu ter hot reloading do meu código.
 4. Crie um banco de dados no Mysql chamado ```pseudotinder```;
 5. Entre na pasta do projeto e execute ```mvn spring-boot:run -Dspring.profiles.active=development``` para rodar o projeto no ambiente de desenvolvimento. O Maven, seus plugins e o Spring Boot devem se encarregar de baixar e configurar todas as dependências.
 6. O projeto estará disponível em http://localhost:8080
+
+## Como compilar o projeto e executar o jar resultante ##
+
+1. Compile com ```mvn package -Dspring.profiles.active=development``` (Para ambiente de desenvolvimento)
+2. Execute com ```java -jar -Dspring.profiles.active=development NOME_DO_ARQUIVO_JAR.jar```
