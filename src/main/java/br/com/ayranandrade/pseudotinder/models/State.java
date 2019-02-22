@@ -52,4 +52,9 @@ public class State {
   public void setCreatedAt(Instant createdAt) {
     this.createdAt = createdAt;
   }
+
+  @Override
+  public String toString() {
+	  return "State [id=" + id + ", name=" + name + ", createdAt=" + createdAt + "]";
+  }
 }
