@@ -4,18 +4,13 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.ayranandrade.pseudotinder.controllers.HomeController;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class ApplicationTest {
+public class ApplicationTest extends AbstractSpringBootTest {
 	
 	@LocalServerPort
     private int port;
