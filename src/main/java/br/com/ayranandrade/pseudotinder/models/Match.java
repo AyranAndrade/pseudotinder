@@ -38,7 +38,9 @@ public class Match {
   @NotNull
   private Instant createdAt;
 
-  private Match() {}
+  private Match() {
+	  createdAt = Instant.now();
+  }
 
   @Override
   public String toString() {
