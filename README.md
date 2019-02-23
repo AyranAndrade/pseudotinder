@@ -25,3 +25,9 @@ Usar também o devtools do Spring, para eu ter hot reloading do meu código.
 ## Como rodar todos os testes do projeto ##
 
 Execute ```mvn test -Dspring.profiles.active=development```
+
+## Como atualizar as dependências descritas no package.json para as suas últimas versões ##
+
+1. Instale o NPM Check Updates: ```npm install -g npm-check-updates```
+2. Execute-o: ```ncu -u```
+3. Instale as novas dependências: ```npm install``` 
