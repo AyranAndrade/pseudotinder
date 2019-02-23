@@ -37,7 +37,7 @@ public class City {
   @JoinColumn(name = "state_id", referencedColumnName = "state_id")
   private State stateInWhichTheCityLies;
 
-  protected City() {}
+  private City() {}
 
   @Override
   public String toString() {
