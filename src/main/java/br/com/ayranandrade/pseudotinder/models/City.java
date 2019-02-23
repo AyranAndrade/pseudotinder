@@ -30,7 +30,7 @@ public class City {
   private String name;
     
   @NotNull
-  @Column(name = "created_at", nullable = false)
+  @Column(nullable = false)
   private Instant createdAt;
     
   @ManyToOne(fetch = FetchType.EAGER, optional = false)
