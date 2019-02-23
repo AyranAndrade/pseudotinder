@@ -9,11 +9,12 @@
   "author": "Ayran Andrade",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-cli": "^2.0.1"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.3.1",
+    "gulp-csso": "^3.0.1",
     "jquery": "^3.3.1"
   }
 }

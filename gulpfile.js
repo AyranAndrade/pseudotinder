@@ -1,13 +1,17 @@
-const gulp = require('gulp');
+const { src, dest, parallel } = require('gulp');
+const minifyCSS = require('gulp-csso');
 
-gulp.task('bootstrap', () => 
-    gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
-    .pipe(gulp.dest('src/main/resources/build/css/'))
-);
+function bootstrap() {
+  return src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+    .pipe(dest('src/main/resources/build/css/'))
+}
 
-gulp.task('css', () => 
-    gulp.src('src/main/resources/static/css/*.css')
-    .pipe(gulp.dest('src/main/resources/build/css/'))
-);
+function css() {
+  return src('src/main/resources/static/css/*.css')
+    .pipe(minifyCSS())
+    .pipe(dest('src/main/resources/build/css/'))
+}
 
-gulp.task('default', [ 'bootstrap', 'css' ]);
+exports.css = css;
+exports.bootstrap = bootstrap;
+exports.default = parallel(bootstrap, css);
