@@ -31,7 +31,7 @@ public class City {
     
   @NotNull
   @Column(name = "created_at", nullable = false)
-  private Instant createdAt = Instant.now();
+  private Instant createdAt;
     
   @ManyToOne(fetch = FetchType.EAGER, optional = false)
   @JoinColumn(name = "state_id", referencedColumnName = "state_id")
