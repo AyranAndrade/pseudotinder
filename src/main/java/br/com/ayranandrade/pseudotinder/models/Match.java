@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import static br.com.ayranandrade.pseudotinder.helpers.ReliabilityHelper.throwsExceptionIfNull;
+
 @Entity
 @Table(name = "matches")
 public class Match {
@@ -39,6 +41,20 @@ public class Match {
   private Instant createdAt;
 
   private Match() {
+	  initializeAttributes();
+  }
+  
+  public Match(People userThatIsUsingThisApp, People personThatIsBeingAnalyzed, Boolean userLikesThePerson) {
+	  initializeAttributes();
+	  
+	  this.personThatIsBeingAnalyzed = throwsExceptionIfNull(personThatIsBeingAnalyzed);
+	  
+	  this.userThatIsUsingThisApp = throwsExceptionIfNull(userThatIsUsingThisApp);
+	  
+	  this.userLikesThePerson = throwsExceptionIfNull(userLikesThePerson);
+  }
+  
+  private void initializeAttributes() {
 	  createdAt = Instant.now();
   }
 
@@ -47,6 +63,10 @@ public class Match {
 	  return "Match [id=" + id + ", userThatIsUsingThisApp=" + userThatIsUsingThisApp + ", personThatIsBeingAnalyzed="
 			  + personThatIsBeingAnalyzed + ", userLikesThePerson=" + userLikesThePerson + ", createdAt=" + createdAt
 			  + "]";
+  }
+  
+  public Integer getId() {
+	  return id;
   }
   
 }
