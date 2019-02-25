@@ -17,9 +17,9 @@ public class CityRepositoryTest extends AbstractSpringBootTest {
 
     @Test
     public void shouldGetCityById() {
-    	Optional<City> optionalCity = cityRepository.findById(5000);
+    	Optional<City> optionalCity = cityRepository.findById(1000);
     	assertTrue(optionalCity.isPresent());
     	String cityDescription = optionalCity.get().toString(); 
-    	assertTrue(cityDescription.contains("5000"));
+    	assertTrue(cityDescription.contains("1000"));
     }
 }
