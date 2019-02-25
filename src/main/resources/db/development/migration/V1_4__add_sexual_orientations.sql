@@ -9,8 +9,8 @@
  */
 
 INSERT INTO sexual_orientations (name) VALUES
-('heterosexual'),
-('homosexual'),
-('bisexual'),
-('asexual'),
-('pansexual');
+('HETEROSEXUAL'),
+('HOMOSEXUAL'),
+('BISEXUAL'),
+('ASEXUAL'),
+('PANSEXUAL');

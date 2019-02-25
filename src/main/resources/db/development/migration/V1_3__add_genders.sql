@@ -9,8 +9,8 @@
  */
 
 INSERT INTO genders (name) VALUES
-('transman'),
-('transwoman'),
-('cisman'),
-('ciswoman'),
-('agender');
+('TRANSMAN'),
+('TRANSWOMAN'),
+('CISMAN'),
+('CISWOMAN'),
+('AGENDER');
