@@ -30,7 +30,7 @@ public class Gender {
   @NotNull
   private Instant createdAt;
 
-  private Gender() {}
+  protected Gender() {}
   
   @Override
   public String toString() {
