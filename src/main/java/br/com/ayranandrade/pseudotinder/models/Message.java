@@ -15,6 +15,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import static br.com.ayranandrade.pseudotinder.helpers.ReliabilityHelper.throwsExceptionIfNull;
+
 @Entity
 @Table(name = "messages")
 public class Message {
@@ -46,7 +48,32 @@ public class Message {
   private Boolean active;
 
   private Message() {
+	  initializeAttributes();
+  }
+  
+  public Message(People sender, People recipient, String messageBody) {
+	  initializeAttributes();
+	  
+	  this.sender = throwsExceptionIfNull(sender);
+	  
+	  this.recipient = throwsExceptionIfNull(recipient);
+	  
+	  this.messageBody = throwsExceptionIfNull(messageBody);
+  }
+  
+  private void initializeAttributes() {
 	  active = true;
 	  sentAt = Instant.now();
   }
+  
+  public Integer getId() {
+	  return id;
+  }
+
+  @Override
+  public String toString() {
+	  return "Message [id=" + id + ", messageBody=" + messageBody + ", sentAt=" + sentAt + ", sender=" + sender
+			  + ", recipient=" + recipient + ", active=" + active + "]";
+  }
+  
 }
