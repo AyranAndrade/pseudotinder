@@ -1,4 +1,4 @@
-package br.com.ayranandrade.pseudotinder.repositories;
+package br.com.ayranandrade.pseudotinder.repositories.integrationtests;
 
 import static org.junit.Assert.assertTrue;
 
@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.ayranandrade.pseudotinder.AbstractSpringBootTest;
 import br.com.ayranandrade.pseudotinder.models.Message;
 import br.com.ayranandrade.pseudotinder.models.People;
+import br.com.ayranandrade.pseudotinder.repositories.MessageRepository;
+import br.com.ayranandrade.pseudotinder.repositories.PeopleRepository;
 
 public class MessageRepositoryTest extends AbstractSpringBootTest {
 	

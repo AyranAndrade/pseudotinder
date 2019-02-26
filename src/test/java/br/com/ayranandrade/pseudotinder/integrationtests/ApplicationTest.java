@@ -1,4 +1,4 @@
-package br.com.ayranandrade.pseudotinder;
+package br.com.ayranandrade.pseudotinder.integrationtests;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 
+import br.com.ayranandrade.pseudotinder.AbstractSpringBootTest;
 import br.com.ayranandrade.pseudotinder.controllers.HomeController;
 
 public class ApplicationTest extends AbstractSpringBootTest {

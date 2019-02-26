@@ -1,4 +1,4 @@
-package br.com.ayranandrade.pseudotinder.repositories;
+package br.com.ayranandrade.pseudotinder.repositories.integrationtests;
 
 import static org.junit.Assert.assertTrue;
 
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.ayranandrade.pseudotinder.AbstractSpringBootTest;
 import br.com.ayranandrade.pseudotinder.models.City;
+import br.com.ayranandrade.pseudotinder.repositories.CityRepository;
 
 public class CityRepositoryTest extends AbstractSpringBootTest {
 
