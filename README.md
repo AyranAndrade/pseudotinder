@@ -25,7 +25,8 @@ Usar também o devtools do Spring, para eu ter hot reloading do meu código.
 ## Como rodar todos os testes do projeto ##
 
 Execute ```mvn test -Dspring.profiles.active=test```. Este comando vai executar os testes unitários e de integração, só que estes últimos serão feitos usando um banco de dados em memória, o HSQLDB.
-**AVISO:** Todo o ambiente de teste foi feito para ser executado com o comando acima, que invoca um perfil de teste. Ao executar os testes usando outros comandos como ```mvn test -Dspring.profiles.active=test``` ou ```mvn test``` erros irão acontecer já que o projeto nunca foi pensado para funcionar desta forma.
+**AVISO:** Todo o ambiente de teste foi feito para ser executado com o comando acima, que invoca um perfil de teste. Ao executar os testes usando outros comandos como ```mvn test -Dspring.profiles.active=development```, 
+ou simplesmente ```mvn test```, erros irão acontecer, o que é natural, uma vez que o projeto nunca foi pensado para funcionar desta forma.
 
 ## Como atualizar as dependências descritas no package.json para as suas últimas versões ##
 
