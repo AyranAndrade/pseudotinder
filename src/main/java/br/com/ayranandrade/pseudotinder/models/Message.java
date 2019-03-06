@@ -37,11 +37,11 @@ public class Message {
   
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "sent_from")
-  private People sender;
+  private Person sender;
 
   @ManyToOne(fetch = FetchType.EAGER, optional = false)
   @JoinColumn(name = "sent_to")
-  private People recipient;
+  private Person recipient;
 
   @Column(nullable = false)
   @NotNull
@@ -51,7 +51,7 @@ public class Message {
 	  initializeAttributes();
   }
   
-  public Message(People sender, People recipient, String messageBody) {
+  public Message(Person sender, Person recipient, String messageBody) {
 	  initializeAttributes();
 	  
 	  this.sender = throwsExceptionIfNull(sender);

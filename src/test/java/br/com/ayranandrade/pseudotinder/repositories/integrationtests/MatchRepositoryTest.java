@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ayranandrade.pseudotinder.AbstractSpringBootTest;
 import br.com.ayranandrade.pseudotinder.models.Match;
-import br.com.ayranandrade.pseudotinder.models.People;
+import br.com.ayranandrade.pseudotinder.models.Person;
 import br.com.ayranandrade.pseudotinder.repositories.MatchRepository;
-import br.com.ayranandrade.pseudotinder.repositories.PeopleRepository;
+import br.com.ayranandrade.pseudotinder.repositories.PersonRepository;
 
 public class MatchRepositoryTest extends AbstractSpringBootTest {
 	
@@ -20,12 +20,12 @@ public class MatchRepositoryTest extends AbstractSpringBootTest {
     private MatchRepository matchRepository;
     
     @Autowired
-    private PeopleRepository peopleRepository;
+    private PersonRepository personRepository;
     
     @Test
     public void shouldAddMatchToDatabase() {
-    	People firstPerson = peopleRepository.getOne(10);
-    	People secondPerson = peopleRepository.getOne(11);
+      Person firstPerson = personRepository.getOne(10);
+      Person secondPerson = personRepository.getOne(11);
     	Match match = new Match(firstPerson, secondPerson, true);
     	matchRepository.save(match);
     	Integer matchId = match.getId();

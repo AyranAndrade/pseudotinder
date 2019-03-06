@@ -40,14 +40,14 @@ public class Photo {
 
   @ManyToOne(fetch = FetchType.EAGER, optional = false)
   @JoinColumn(name = "people_id")
-  private People uploader;
+  private Person uploader;
 
   /**
   * This constructor is only for JPA use.
   */
   private Photo() {}
 
-  public Photo(String urlOrPath, People uploader) {
+  public Photo(String urlOrPath, Person uploader) {
     String urlOrPathNotNull = Optional.ofNullable(urlOrPath)
         .orElseThrow(() -> new IllegalArgumentException("The url or path from photo " 
         + "can not be null."));
@@ -90,7 +90,7 @@ public class Photo {
     }
   }
 
-  public People getUploader() {
+  public Person getUploader() {
     return uploader;
   }
 

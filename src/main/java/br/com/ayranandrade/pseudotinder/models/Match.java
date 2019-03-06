@@ -26,11 +26,11 @@ public class Match {
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "people_id")
-  private People userThatIsUsingThisApp;
+  private Person userThatIsUsingThisApp;
   
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "people_judged_id")
-  private People personThatIsBeingAnalyzed;
+  private Person personThatIsBeingAnalyzed;
 
   @Column(name = "liked", nullable = false)
   @NotNull
@@ -44,7 +44,7 @@ public class Match {
 	  initializeAttributes();
   }
   
-  public Match(People userThatIsUsingThisApp, People personThatIsBeingAnalyzed, Boolean userLikesThePerson) {
+  public Match(Person userThatIsUsingThisApp, Person personThatIsBeingAnalyzed, Boolean userLikesThePerson) {
 	  initializeAttributes();
 	  
 	  this.personThatIsBeingAnalyzed = throwsExceptionIfNull(personThatIsBeingAnalyzed);

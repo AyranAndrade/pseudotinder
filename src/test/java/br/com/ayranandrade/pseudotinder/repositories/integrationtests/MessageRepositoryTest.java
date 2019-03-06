@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ayranandrade.pseudotinder.AbstractSpringBootTest;
 import br.com.ayranandrade.pseudotinder.models.Message;
-import br.com.ayranandrade.pseudotinder.models.People;
+import br.com.ayranandrade.pseudotinder.models.Person;
 import br.com.ayranandrade.pseudotinder.repositories.MessageRepository;
-import br.com.ayranandrade.pseudotinder.repositories.PeopleRepository;
+import br.com.ayranandrade.pseudotinder.repositories.PersonRepository;
 
 public class MessageRepositoryTest extends AbstractSpringBootTest {
 	
@@ -20,12 +20,12 @@ public class MessageRepositoryTest extends AbstractSpringBootTest {
     private MessageRepository messageRepository;
     
     @Autowired
-    private PeopleRepository peopleRepository;
+    private PersonRepository personRepository;
     
     @Test
     public void shouldAddMessageToDatabase() {
-    	People sender = peopleRepository.getOne(10);
-    	People recipient = peopleRepository.getOne(11);
+      Person sender = personRepository.getOne(10);
+      Person recipient = personRepository.getOne(11);
     	String messageBody = "Hello! How are you?";
     	Message message = new Message(sender, recipient, messageBody);
     	messageRepository.save(message);
