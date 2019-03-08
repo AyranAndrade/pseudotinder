@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -23,48 +23,40 @@ public class Region {
   @Column(name = "region_id")
   private Integer id;
   
-  @Column(nullable = false, length = 30)
-  @NotBlank
+  @NotEmpty
   @Size(max = 30)
   private String name;
   
-  @Column(nullable = false, name = "created_at")
   @NotNull
-  private Instant createdAt = Instant.now();
+  private Instant createdAt;
   
   @ManyToOne(fetch = FetchType.EAGER, optional = false)
   @JoinColumn(name = "city_id", referencedColumnName = "city_id")
-  private City city;
+  private City cityInWhichRegionLies;
+
+  private Region() {
+    initializeAttributes();
+  }
+
+  private void initializeAttributes() {
+    createdAt = Instant.now();
+  }
+
+  public Region(String name, City city) {
+    this.name = name;
+    cityInWhichRegionLies = city;
+    initializeAttributes();
+  }
 
   public Integer getId() {
     return id;
+  }  
+
+  @Override
+  public String toString() {
+    return "Region [id=" + id + ", name=" + name + ", createdAt=" 
+    + createdAt + ", cityInWhichRegionLies=" + cityInWhichRegionLies + "]";
   }
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Instant getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
-  }
-
-  public City getCity() {
-    return city;
-  }
-
-  public void setCity(City city) {
-    this.city = city;
-  }
 }
+
