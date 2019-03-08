@@ -1,6 +1,7 @@
 package br.com.ayranandrade.pseudotinder.models;
 
-import static br.com.ayranandrade.pseudotinder.models.RatingEloScore.K_FACTOR;
+import static br.com.ayranandrade.pseudotinder.models.EloScoreRating.K_FACTOR;
+import static br.com.ayranandrade.pseudotinder.models.EloScoreRating.DEFAULT_STARTING_ELO_RATING;
 import static java.lang.Math.pow;
 
 import java.math.BigDecimal;
@@ -100,7 +101,7 @@ public class Person {
   private void initializeAttributes() {
 	  createdAt = Instant.now();
 	  active = true;
-	  eloScore = RatingEloScore.DEFAULT_STARTING_ELO_RATING;
+	  eloScore = DEFAULT_STARTING_ELO_RATING;
   }
   
   public void updateMyEloScore(Person otherPerson, PossibleMatchResults iLikedOrNotThatPerson) {
