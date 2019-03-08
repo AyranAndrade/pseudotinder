@@ -5,7 +5,7 @@ import static java.lang.Math.pow;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
+import static java.math.RoundingMode.HALF_UP;
 import java.time.Instant;
 import java.time.LocalDate;
 
@@ -105,14 +105,6 @@ public class Person {
 	  eloScore = RatingEloScore.DEFAULT_STARTING_ELO_RATING;
   }
   
-  public Integer getId() {
-	  return id;
-  }
-  
-  public Integer getEloScore() {
-	  return eloScore;
-  }
-  
   public void updateMyEloScore(Person otherPerson, PossibleMatchResults iLikedOrNotThatPerson) {
 	  BigDecimal myEloScore = new BigDecimal(eloScore);
 	  BigDecimal probability = getProbabilityOfILikeThisPerson(otherPerson);
@@ -122,7 +114,7 @@ public class Person {
 			  .subtract(probability)
 			  .multiply(KFactor)
         .add(myEloScore)
-        .setScale(0, RoundingMode.HALF_UP)
+        .setScale(0, HALF_UP)
         .intValue();
   }
   
@@ -134,10 +126,18 @@ public class Person {
 	  double divisor = 1.0 + tenToThePowerOfQuotient;
 	  double dividend = 1.0;
 	  double result = dividend/divisor;
-	  MathContext toThreeDecimalPlaces = new MathContext(3);
+	  MathContext toThreeDecimalPlaces = new MathContext(3, HALF_UP);
 	  return new BigDecimal(result).round(toThreeDecimalPlaces);
   }
 
+  public Integer getEloScore() {
+	  return eloScore;
+  }
+
+  public Integer getId() {
+	  return id;
+  }
+  
   @Override
   public String toString() {
     return "People{" + "id=" + id + ", name=" + myNameThatIWantOtherPeopleSee + ", birthDate=" + birthDate + ", aboutMe=" 
