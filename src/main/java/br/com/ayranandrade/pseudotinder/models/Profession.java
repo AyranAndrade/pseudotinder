@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,36 +21,35 @@ public class Profession {
   @Column(name = "profession_id")
   private Integer id;
 
-  @Column(nullable = false, length = 100, unique = true)
-  @NotBlank
+  @Column(unique = true)
+  @NotEmpty
   @Size(max = 100)
   private String name;
 
-  @Column(name = "created_at", nullable = false)
   @NotNull
-  private Instant createdAt = Instant.now();
+  private Instant createdAt;
+
+  private Profession() {
+    initializeAttributes();
+  }
+
+  private void initializeAttributes() {
+    createdAt = Instant.now();
+  }
+
+  public Profession(String name) {
+    this.name = name;
+    initializeAttributes();
+  }
 
   public Integer getId() {
     return id;
+  }  
+
+  @Override
+  public String toString() {
+    return "Profession [id=" + id + ", name=" + name + ", createdAt=" 
+    + createdAt + "]";
   }
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Instant getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
-  }
 }
