@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -26,12 +26,11 @@ public class Message {
   @Column(name = "message_id")
   private Integer id;
 
-  @Column(name = "message", nullable = false, length = 1000)
-  @NotBlank
+  @Column(name = "message")
+  @NotEmpty
   @Size(max = 1000)
   private String messageBody;
 
-  @Column(nullable = false)
   @NotNull
   private Instant sentAt;
   
@@ -43,7 +42,6 @@ public class Message {
   @JoinColumn(name = "sent_to")
   private Person recipient;
 
-  @Column(nullable = false)
   @NotNull
   private Boolean active;
 

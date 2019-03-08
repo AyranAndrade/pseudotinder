@@ -32,11 +32,10 @@ public class Match {
   @JoinColumn(name = "people_judged_id")
   private Person personThatIsBeingAnalyzed;
 
-  @Column(name = "liked", nullable = false)
+  @Column(name = "liked")
   @NotNull
   private Boolean userLikesThePerson;
 
-  @Column(nullable = false)
   @NotNull
   private Instant createdAt;
 

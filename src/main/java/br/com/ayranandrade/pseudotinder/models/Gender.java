@@ -21,12 +21,11 @@ public class Gender {
   @Column(name = "gender_id")
   private Integer id;
   
-  @Column(name = "name", nullable = false)
+  @Column(name = "name")
   @NotNull
   @Enumerated(EnumType.STRING)
   private GenderType genderName;
   
-  @Column(nullable = false)
   @NotNull
   private Instant createdAt;
 

@@ -20,7 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -33,8 +33,8 @@ public class Person {
   @Column(name = "people_id")
   private Integer id;
 
-  @Column(name = "name", nullable = false, length = 60)
-  @NotBlank
+  @Column(name = "name")
+  @NotEmpty
   @Size(max = 60)
   private String myNameThatIWantOtherPeopleSee;
 
@@ -42,40 +42,38 @@ public class Person {
   @NotNull
   private LocalDate birthDate;
 
-  @Column(name = "about_me", nullable = false, length = 1000)
-  @NotBlank
+  @Column(name = "about_me")
+  @NotEmpty
   @Size(max = 1000)
   private String myDescriptionAboutMyself;
   
-  @Column(nullable = false, length = 20, unique = true)
-  @NotBlank
+  @Column(unique = true)
+  @NotEmpty
   @Size(max = 20)
   private String username;
 
-  @Column(name = "elo_score_rating", nullable = false)
+  @Column(name = "elo_score_rating")
   @NotNull
   @Min(0)
   private Integer eloScore;
 
-  @Column(name = "max_distance_kilometer", nullable = false)
+  @Column(name = "max_distance_kilometer")
   @NotNull
   @Digits(fraction = 3, integer = 4)
   private BigDecimal maxDistanceToLookForPeopleInKilometers;
 
-  @Column(name = "created_at", nullable = false)
   @NotNull
   private Instant createdAt;
 
-  @Column(nullable = false)
   @NotNull
   private Boolean active;
 
-  @Column(name = "age_range_start", nullable = false)
+  @Column(name = "age_range_start")
   @NotNull
   @Min(18)
   private Integer peopleThatILikeMustHaveAgeBiggerThan;
 
-  @Column(name = "age_range_end", nullable = false)
+  @Column(name = "age_range_end")
   @NotNull
   private Integer peopleThatILikeMustHaveAgeLesserThan;
 
