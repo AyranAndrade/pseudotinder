@@ -21,35 +21,35 @@ public class SexualOrientation {
   @Column(name = "sexual_orientation_id")
   private Integer id;
 
-  @Column(nullable = false)
+  @NotNull
   @Enumerated(EnumType.STRING)
+  @Column(unique = true)
   private SexualOrientationType name;
 
-  @Column(name = "created_at", nullable = false)
   @NotNull
-  private Instant createdAt = Instant.now();
+  private Instant createdAt;
+
+  private SexualOrientation() {
+    initiliazeAttributes();
+  }
+
+  private void initiliazeAttributes() {
+    createdAt = Instant.now();
+  }
+
+  public SexualOrientation(SexualOrientationType type) {
+    name = type;
+    initiliazeAttributes();
+  }
 
   public Integer getId() {
     return id;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  @Override
+  public String toString() {
+    return "SexualOrientation [id=" + id + ", name=" + name + ", createdAt=" 
+    + createdAt + "]";
   }
 
-  public String getName() {
-    return name.getOrientation();
-  }
-
-  public void setName(SexualOrientationType name) {
-    this.name = name;
-  }
-
-  public Instant getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
-  }
 }
