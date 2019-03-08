@@ -1,5 +1,6 @@
 package br.com.ayranandrade.pseudotinder.integrationtests.repositories;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
@@ -39,7 +40,7 @@ public class PhotoRepositoryTest extends AbstractSpringBootTest {
     public void shouldDeletePhotoFromDatabaseAndDoNotGetItById() {
     	photoRepository.deleteById(1);
     	Optional<Photo> optionalPhoto = photoRepository.findById(1);
-    	assertTrue(optionalPhoto.isEmpty());
+    	assertFalse(optionalPhoto.isPresent());
     }
 
     @Test(expected = ConstraintViolationException.class)

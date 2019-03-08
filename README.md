@@ -9,14 +9,13 @@ Usar também o devtools do Spring, para eu ter hot reloading do meu código.
 
 ## Como instalar e executar o projeto ##
 
-1. Instale o Java 11 (O projeto só funcionará nesta versão do Java);
-2. Instale o Maven através do comando ```sudo apt-get install maven```;
-3. Instale o Mysql;
-4. Acesse o arquivo ```src/main/resources/db/migration/application-development.properties``` e coloque o seu nome de usuário e senha;
-5. Crie um banco de dados no Mysql chamado ```pseudotinder```;
-6. Entre na pasta do projeto e execute ```mvn spring-boot:run -Dspring.profiles.active=development``` para rodar o projeto no ambiente de desenvolvimento. O Maven, seus plugins e o Spring Boot devem se encarregar de baixar e configurar todas as dependências.
-7. O projeto estará disponível em http://localhost:8080
-8. (Opcional) Se o Spring Boot Devtools estiver no pom.xml, o comando listado na linha 5 não funcionará e precisará ser substituído por ```mvn spring-boot:run -Dspring-boot.run.profiles=development```.
+1. Instale o Maven através do comando ```sudo apt-get install maven```;
+2. Instale o Mysql;
+3. Acesse o arquivo ```src/main/resources/db/migration/application-development.properties``` e coloque o seu nome de usuário e senha;
+4. Crie um banco de dados no Mysql chamado ```pseudotinder```;
+5. Entre na pasta do projeto e execute ```mvn spring-boot:run -Dspring.profiles.active=development``` para rodar o projeto no ambiente de desenvolvimento. O Maven, seus plugins e o Spring Boot devem se encarregar de baixar e configurar todas as dependências.
+6. O projeto estará disponível em http://localhost:8080
+7. (Opcional) Se o Spring Boot Devtools estiver no pom.xml, o comando listado na linha 5 não funcionará e precisará ser substituído por ```mvn spring-boot:run -Dspring-boot.run.profiles=development```.
 
 ## Como compilar o projeto e executar o jar resultante ##
 

@@ -1,5 +1,6 @@
 package br.com.ayranandrade.pseudotinder.integrationtests.repositories;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
@@ -46,7 +47,7 @@ public class MatchRepositoryTest extends AbstractSpringBootTest {
     public void shouldDeleteMatchFromDatabase() {
     	matchRepository.deleteById(2);
     	Optional<Match> optionalMatch = matchRepository.findById(2);
-    	assertTrue(optionalMatch.isEmpty());
+    	assertFalse(optionalMatch.isPresent());
     }
 
 }

@@ -119,7 +119,7 @@ public class PersonRepositoryTest extends AbstractSpringBootTest {
     public void shouldDeletePeopleFromDatabase() {
     	personRepository.deleteById(2);
     	Optional<Person> optionalPerson = personRepository.findById(2);
-    	assertTrue(optionalPerson.isEmpty());
+    	assertFalse(optionalPerson.isPresent());
     }
 
 }
