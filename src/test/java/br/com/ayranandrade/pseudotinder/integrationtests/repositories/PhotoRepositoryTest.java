@@ -1,4 +1,4 @@
-package br.com.ayranandrade.pseudotinder.repositories.integrationtests;
+package br.com.ayranandrade.pseudotinder.integrationtests.repositories;
 
 import static org.junit.Assert.assertTrue;
 

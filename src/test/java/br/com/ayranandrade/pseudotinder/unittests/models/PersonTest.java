@@ -1,4 +1,4 @@
-package br.com.ayranandrade.pseudotinder.models.unittests;
+package br.com.ayranandrade.pseudotinder.unittests.models;
 
 import static org.junit.Assert.assertEquals;
 

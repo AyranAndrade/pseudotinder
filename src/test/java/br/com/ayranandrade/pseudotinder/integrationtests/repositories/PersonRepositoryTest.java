@@ -1,4 +1,4 @@
-package br.com.ayranandrade.pseudotinder.repositories.integrationtests;
+package br.com.ayranandrade.pseudotinder.integrationtests.repositories;
 
 import static br.com.ayranandrade.pseudotinder.models.GenderType.CISMAN;
 import static br.com.ayranandrade.pseudotinder.models.SexualOrientationType.HETEROSEXUAL;
