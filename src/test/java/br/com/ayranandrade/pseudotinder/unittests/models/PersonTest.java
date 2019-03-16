@@ -40,21 +40,26 @@ public class PersonTest extends AbstractSpringBootTest {
   public void shouldReturnCorrectProbability() {
     BigDecimal obtained, expected;
 
-    obtained = ReflectionTestUtils.invokeMethod(gabriel, "getProbabilityOfILikeThisPerson", ana);
+    obtained = getProbabilityOfFirstPersonLikesSecondPerson(gabriel, ana);
     expected = new BigDecimal("0.849");
     assertEquals(expected, obtained);
 
-    obtained = ReflectionTestUtils.invokeMethod(antonio, "getProbabilityOfILikeThisPerson", maria);
+    obtained = getProbabilityOfFirstPersonLikesSecondPerson(antonio, maria);
     expected = new BigDecimal("0.909");
     assertEquals(expected, obtained);
 
-    obtained = ReflectionTestUtils.invokeMethod(jose, "getProbabilityOfILikeThisPerson", cassia);
+    obtained = getProbabilityOfFirstPersonLikesSecondPerson(jose, cassia);
     expected = new BigDecimal("0.5");
     assertEquals(expected, obtained);
 
-    obtained = ReflectionTestUtils.invokeMethod(gabriela, "getProbabilityOfILikeThisPerson", roberto);
+    obtained = getProbabilityOfFirstPersonLikesSecondPerson(gabriela, roberto);
     expected = new BigDecimal("0.760");
     assertEquals(expected, obtained);
+  }
+
+  private BigDecimal getProbabilityOfFirstPersonLikesSecondPerson(Person firstPerson, Person secondPerson) {
+	  // "getProbabilityOfILikeThisPerson" is a private method from class Person.
+	  return ReflectionTestUtils.invokeMethod(firstPerson, "getProbabilityOfILikeThisPerson", secondPerson);
   }
 
   @Test
