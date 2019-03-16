@@ -2,6 +2,11 @@ package br.com.ayranandrade.pseudotinder.unittests.models;
 
 import static org.junit.Assert.assertEquals;
 
+import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.I_LIKED_THAT_PERSON;
+import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.THAT_PERSON_LIKED_ME;
+import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.I_DISLIKED_THAT_PERSON;
+import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.THAT_PERSON_DISLIKED_ME;
+
 import java.math.BigDecimal;
 
 import org.junit.Before;
@@ -10,7 +15,6 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import br.com.ayranandrade.pseudotinder.AbstractSpringBootTest;
 import br.com.ayranandrade.pseudotinder.models.Person;
-import br.com.ayranandrade.pseudotinder.models.PossibleMatchResults;
 
 public class PersonTest extends AbstractSpringBootTest {
 
@@ -66,44 +70,84 @@ public class PersonTest extends AbstractSpringBootTest {
   public void shouldUpdateCorrectlyEloScore() {
     Integer obtained, expected;
 
-    gabriel.updateMyEloScore(ana, PossibleMatchResults.I_LIKED_THAT_PERSON);
+    gabriel.updateMyEloScore(ana, I_LIKED_THAT_PERSON);
     obtained = gabriel.getEloScore();
     expected = 2473;
     assertEquals(expected, obtained);
 
-    ana.updateMyEloScore(gabriel, PossibleMatchResults.THAT_PERSON_LIKED_ME);
+    ana.updateMyEloScore(gabriel, THAT_PERSON_LIKED_ME);
     obtained = ana.getEloScore();
     expected = 2226;
     assertEquals(expected, obtained);
 
-    antonio.updateMyEloScore(maria, PossibleMatchResults.I_LIKED_THAT_PERSON);
+    ana.updateMyEloScore(gabriel, I_DISLIKED_THAT_PERSON);
+    obtained = ana.getEloScore();
+    expected = 2252;
+    assertEquals(expected, obtained);
+
+    gabriel.updateMyEloScore(ana, THAT_PERSON_DISLIKED_ME);
+    obtained = gabriel.getEloScore();
+    expected = 2448;
+    assertEquals(expected, obtained);
+
+    antonio.updateMyEloScore(maria, I_LIKED_THAT_PERSON);
     obtained = antonio.getEloScore();
     expected = 2371;
     assertEquals(expected, obtained);
 
-    maria.updateMyEloScore(antonio, PossibleMatchResults.THAT_PERSON_LIKED_ME);
+    maria.updateMyEloScore(antonio, THAT_PERSON_LIKED_ME);
     obtained = maria.getEloScore();
     expected = 2029;
     assertEquals(expected, obtained);
 
-    jose.updateMyEloScore(cassia, PossibleMatchResults.I_LIKED_THAT_PERSON);
+    maria.updateMyEloScore(antonio, I_DISLIKED_THAT_PERSON);
+    obtained = maria.getEloScore();
+    expected = 2057;
+    assertEquals(expected, obtained);
+
+    antonio.updateMyEloScore(maria, THAT_PERSON_DISLIKED_ME);
+    obtained = antonio.getEloScore();
+    expected = 2344;
+    assertEquals(expected, obtained);
+
+    jose.updateMyEloScore(cassia, I_LIKED_THAT_PERSON);
     obtained = jose.getEloScore();
     expected = 1184;
     assertEquals(expected, obtained);
 
-    cassia.updateMyEloScore(jose, PossibleMatchResults.THAT_PERSON_LIKED_ME);
+    cassia.updateMyEloScore(jose, THAT_PERSON_LIKED_ME);
     obtained = cassia.getEloScore();
     expected = 1215;
     assertEquals(expected, obtained);
 
-    gabriela.updateMyEloScore(roberto, PossibleMatchResults.I_LIKED_THAT_PERSON);
+    cassia.updateMyEloScore(jose, I_LIKED_THAT_PERSON);
+    obtained = cassia.getEloScore();
+    expected = 1198;
+    assertEquals(expected, obtained);
+
+    jose.updateMyEloScore(cassia, THAT_PERSON_LIKED_ME);
+    obtained = jose.getEloScore();
+    expected = 1201;
+    assertEquals(expected, obtained);
+
+    gabriela.updateMyEloScore(roberto, I_LIKED_THAT_PERSON);
     obtained = gabriela.getEloScore();
     expected = 1176;
     assertEquals(expected, obtained);
 
-    roberto.updateMyEloScore(gabriela, PossibleMatchResults.THAT_PERSON_LIKED_ME);
+    roberto.updateMyEloScore(gabriela, THAT_PERSON_LIKED_ME);
     obtained = roberto.getEloScore();
     expected = 1023;
+    assertEquals(expected, obtained);
+
+    roberto.updateMyEloScore(gabriela, I_LIKED_THAT_PERSON);
+    obtained = roberto.getEloScore();
+    expected = 1014;
+    assertEquals(expected, obtained);
+
+    gabriela.updateMyEloScore(roberto, THAT_PERSON_LIKED_ME);
+    obtained = gabriela.getEloScore();
+    expected = 1185;
     assertEquals(expected, obtained);
   }
 
