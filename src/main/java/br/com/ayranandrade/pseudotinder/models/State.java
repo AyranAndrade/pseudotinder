@@ -1,60 +1,49 @@
 package br.com.ayranandrade.pseudotinder.models;
 
 import java.time.Instant;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "states")
 public class State {
-    
-  @Id 
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "state_id")
-  private Integer id;
-  
-  @NotBlank
-  @Size(max = 30)
-  @Column(nullable = false, length = 30, unique = true)
-  private String name;
 
-  @Column(name = "created_at", nullable = false)
-  @NotNull
-  private Instant createdAt = Instant.now();
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "state_id")
+	private Integer id;
 
-  public Integer getId() {
-    return id;
-  }
+	@NotEmpty
+	@Size(max = 30)
+	@Column(unique = true)
+	private String name;
 
-  public String getName() {
-    return name;
-  }
+	@NotNull
+	private Instant createdAt;
 
-  public Instant getCreatedAt() {
-    return createdAt;
-  }
+	private State() {
+		initializeAttributes();
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	private void initializeAttributes() {
+		createdAt = Instant.now();
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public State(String name) {
+		this.name = name;
+		initializeAttributes();
+	}
 
-  public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
-  }
-
-  @Override
-  public String toString() {
-	  return "State [id=" + id + ", name=" + name + ", createdAt=" + createdAt + "]";
-  }
+	@Override
+	public String toString() {
+		return "State [id=" + id + ", name=" + name + ", createdAt=" + createdAt + "]";
+	}
 }
