@@ -1,12 +1,16 @@
 package br.com.ayranandrade.pseudotinder.models;
 
-import static br.com.ayranandrade.pseudotinder.models.EloScoreRating.K_FACTOR;
 import static br.com.ayranandrade.pseudotinder.models.EloScoreRating.DEFAULT_STARTING_ELO_RATING;
+import static br.com.ayranandrade.pseudotinder.models.EloScoreRating.K_FACTOR;
+import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.I_DISLIKED_THAT_PERSON;
+import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.I_LIKED_THAT_PERSON;
+import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.THAT_PERSON_DISLIKED_ME;
+import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.THAT_PERSON_LIKED_ME;
 import static java.lang.Math.pow;
+import static java.math.RoundingMode.HALF_UP;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import static java.math.RoundingMode.HALF_UP;
 import java.time.Instant;
 import java.time.LocalDate;
 
@@ -104,14 +108,30 @@ public class Person {
 		eloScore = DEFAULT_STARTING_ELO_RATING;
 	}
 
-	public void updateMyEloScore(Person otherPerson, PossibleMatchResults iLikedOrNotThatPerson) {
+	public void giveLikeTo(Person person) {
+		updateMyEloScore(person, I_LIKED_THAT_PERSON);
+	}
+
+	public void giveDislikeTo(Person person) {
+		updateMyEloScore(person, I_DISLIKED_THAT_PERSON);
+	}
+
+	public void receiveLikeFrom(Person person) {
+		updateMyEloScore(person, THAT_PERSON_LIKED_ME);
+	}
+
+	public void receiveDislikeFrom(Person person) {
+		updateMyEloScore(person, THAT_PERSON_DISLIKED_ME);
+	}
+
+	private void updateMyEloScore(Person otherPerson, PossibleMatchResults iLikedOrNotThatPerson) {
 		BigDecimal myEloScore = new BigDecimal(eloScore);
 		BigDecimal probability = getProbabilityOfILikeThisPerson(otherPerson);
-		BigDecimal KFactor = new BigDecimal(K_FACTOR);
+		BigDecimal kFactor = new BigDecimal(K_FACTOR);
 
 		eloScore = new BigDecimal(iLikedOrNotThatPerson.getValue())
 				.subtract(probability)
-				.multiply(KFactor)
+				.multiply(kFactor)
 				.add(myEloScore)
 				.setScale(0, HALF_UP)
 				.intValue();
@@ -139,10 +159,10 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "People{" + "id=" + id + ", name=" + myNameThatIWantOtherPeopleSee + ", birthDate=" + birthDate + ", aboutMe=" 
-				+ myDescriptionAboutMyself + ", username=" + username + ", eloScore=" + eloScore + ", maxDistance=" 
-				+ maxDistanceToLookForPeopleInKilometers + ", createdAt=" + createdAt + ", active=" + active + ", age start=" 
-				+ peopleThatILikeMustHaveAgeBiggerThan + ", age end=" + peopleThatILikeMustHaveAgeLesserThan + ", sexualOrientation=" + mySexualOrientation 
+		return "People{" + "id=" + id + ", name=" + myNameThatIWantOtherPeopleSee + ", birthDate=" + birthDate + ", aboutMe="
+				+ myDescriptionAboutMyself + ", username=" + username + ", eloScore=" + eloScore + ", maxDistance="
+				+ maxDistanceToLookForPeopleInKilometers + ", createdAt=" + createdAt + ", active=" + active + ", age start="
+				+ peopleThatILikeMustHaveAgeBiggerThan + ", age end=" + peopleThatILikeMustHaveAgeLesserThan + ", sexualOrientation=" + mySexualOrientation
 				+ ", gender=" + myGender + ", profession=" + myProfession + ", street=" + whereILive + '}';
 	}
 

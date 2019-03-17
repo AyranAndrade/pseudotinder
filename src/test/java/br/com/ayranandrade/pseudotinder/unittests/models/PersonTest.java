@@ -2,153 +2,147 @@ package br.com.ayranandrade.pseudotinder.unittests.models;
 
 import static org.junit.Assert.assertEquals;
 
-import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.I_LIKED_THAT_PERSON;
-import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.THAT_PERSON_LIKED_ME;
-import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.I_DISLIKED_THAT_PERSON;
-import static br.com.ayranandrade.pseudotinder.models.PossibleMatchResults.THAT_PERSON_DISLIKED_ME;
-
-import java.math.BigDecimal;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import br.com.ayranandrade.pseudotinder.AbstractSpringBootTest;
 import br.com.ayranandrade.pseudotinder.models.Person;
 
 public class PersonTest extends AbstractSpringBootTest {
 
-  Person gabriel, ana, antonio, maria, jose, cassia, gabriela, roberto;
+	@Test
+	public void shouldUpdateEloScoreAfterGabrielGivesLikeToAna() {
+		Person gabriel = new Person.Builder().name("Gabriel").eloScore(2500).build();
+		Person ana = new Person.Builder().name("Ana").eloScore(2200).build();
 
-  @Before
-  public void setup() {
-    gabriel = new Person.Builder().name("Gabriel").eloScore(2500).build();
+		gabriel.giveLikeTo(ana);
+		ana.receiveLikeFrom(gabriel);
 
-    ana = new Person.Builder().name("Ana").eloScore(2200).build();
+		Integer obtainedEloScoreFromGabriel = gabriel.getEloScore();
+		Integer expectedEloScoreFromGabriel = 2473;
+		assertEquals(expectedEloScoreFromGabriel, obtainedEloScoreFromGabriel);
 
-    antonio = new Person.Builder().name("Antônio").eloScore(2400).build();
+		Integer obtainedEloScoreFromAna = ana.getEloScore();
+		Integer expectedEloScoreFromAna = 2226;
+		assertEquals(expectedEloScoreFromAna, obtainedEloScoreFromAna);
+	}
 
-    maria = new Person.Builder().name("Maria").eloScore(2000).build();
+	@Test
+	public void shouldUpdateEloScoreAfterJulianaGivesDislikeToFabio() {
+		Person fabio = new Person.Builder().name("Fabio").eloScore(2473).build();
+		Person juliana = new Person.Builder().name("Juliana").eloScore(2226).build();
 
-    jose = new Person.Builder().name("José").eloScore(1200).build();
+		juliana.giveDislikeTo(fabio);
+		fabio.receiveDislikeFrom(juliana);
 
-    cassia = new Person.Builder().name("Cássia").eloScore(1200).build();
+		Integer obtainedEloScoreFromJuliana = juliana.getEloScore();
+		Integer expectedEloScoreFromJuliana = 2252;
+		assertEquals(expectedEloScoreFromJuliana, obtainedEloScoreFromJuliana);
 
-    gabriela = new Person.Builder().name("Gabriela").eloScore(1200).build();
+		Integer obtainedEloScoreFromFabio = fabio.getEloScore();
+		Integer expectedEloScoreFromFabio = 2448;
+		assertEquals(expectedEloScoreFromFabio, obtainedEloScoreFromFabio);
+	}
 
-    roberto = new Person.Builder().name("Roberto").eloScore(1000).build();
+	@Test
+	public void shouldUpdateEloScoreAfterAntonioGivesLikeToMaria() {
+		Person antonio = new Person.Builder().name("Antônio").eloScore(2400).build();
+		Person maria = new Person.Builder().name("Maria").eloScore(2000).build();
 
-  }
+		antonio.giveLikeTo(maria);
+		maria.receiveLikeFrom(antonio);
 
-  @Test
-  public void shouldReturnCorrectProbability() {
-    BigDecimal obtained, expected;
+		Integer obtainedEloScoreFromAntonio = antonio.getEloScore();
+		Integer expectedEloScoreFromAntonio = 2371;
+		assertEquals(expectedEloScoreFromAntonio, obtainedEloScoreFromAntonio);
 
-    obtained = getProbabilityOfFirstPersonLikesSecondPerson(gabriel, ana);
-    expected = new BigDecimal("0.849");
-    assertEquals(expected, obtained);
+		Integer obtainedEloScoreFromMaria = maria.getEloScore();
+		Integer expectedEloScoreFromMaria = 2029;
+		assertEquals(expectedEloScoreFromMaria, obtainedEloScoreFromMaria);
+	}
 
-    obtained = getProbabilityOfFirstPersonLikesSecondPerson(antonio, maria);
-    expected = new BigDecimal("0.909");
-    assertEquals(expected, obtained);
+	@Test
+	public void shouldUpdateEloScoreAfterStefaniGivesDislikeToAndre() {
+		Person andre = new Person.Builder().name("André").eloScore(2371).build();
+		Person stefani = new Person.Builder().name("Stefani").eloScore(2029).build();
 
-    obtained = getProbabilityOfFirstPersonLikesSecondPerson(jose, cassia);
-    expected = new BigDecimal("0.5");
-    assertEquals(expected, obtained);
+		stefani.giveDislikeTo(andre);
+		andre.receiveDislikeFrom(stefani);
 
-    obtained = getProbabilityOfFirstPersonLikesSecondPerson(gabriela, roberto);
-    expected = new BigDecimal("0.760");
-    assertEquals(expected, obtained);
-  }
+		Integer obtainedEloScoreFromAndre = andre.getEloScore();
+		Integer expectedEloScoreFromAndre = 2344;
+		assertEquals(expectedEloScoreFromAndre, obtainedEloScoreFromAndre);
 
-  private BigDecimal getProbabilityOfFirstPersonLikesSecondPerson(Person firstPerson, Person secondPerson) {
-	  // "getProbabilityOfILikeThisPerson" is a private method from class Person.
-	  return ReflectionTestUtils.invokeMethod(firstPerson, "getProbabilityOfILikeThisPerson", secondPerson);
-  }
+		Integer obtainedEloScoreFromStefani = stefani.getEloScore();
+		Integer expectedEloScoreFromStefani = 2057;
+		assertEquals(expectedEloScoreFromStefani, obtainedEloScoreFromStefani);
+	}
 
-  @Test
-  public void shouldUpdateCorrectlyEloScore() {
-    Integer obtained, expected;
+	@Test
+	public void shouldUpdateEloScoreAfterJoseGivesLikeToCassia() {
+		Person jose = new Person.Builder().name("José").eloScore(1200).build();
+		Person cassia = new Person.Builder().name("Cássia").eloScore(1200).build();
 
-    gabriel.updateMyEloScore(ana, I_LIKED_THAT_PERSON);
-    obtained = gabriel.getEloScore();
-    expected = 2473;
-    assertEquals(expected, obtained);
+		jose.giveLikeTo(cassia);
+		cassia.receiveLikeFrom(jose);
 
-    ana.updateMyEloScore(gabriel, THAT_PERSON_LIKED_ME);
-    obtained = ana.getEloScore();
-    expected = 2226;
-    assertEquals(expected, obtained);
+		Integer obtainedEloScoreFromJose = jose.getEloScore();
+		Integer expectedEloScoreFromJose = 1184;
+		assertEquals(expectedEloScoreFromJose, obtainedEloScoreFromJose);
 
-    ana.updateMyEloScore(gabriel, I_DISLIKED_THAT_PERSON);
-    obtained = ana.getEloScore();
-    expected = 2252;
-    assertEquals(expected, obtained);
+		Integer obtainedEloScoreFromCassia = cassia.getEloScore();
+		Integer expectedEloScoreFromCassia = 1215;
+		assertEquals(expectedEloScoreFromCassia, obtainedEloScoreFromCassia);
+	}
 
-    gabriel.updateMyEloScore(ana, THAT_PERSON_DISLIKED_ME);
-    obtained = gabriel.getEloScore();
-    expected = 2448;
-    assertEquals(expected, obtained);
+	@Test
+	public void shouldUpdateEloScoreAfterPaolaGivesLikeToEduardo() {
+		Person paola = new Person.Builder().name("Paola").eloScore(1215).build();
+		Person eduardo = new Person.Builder().name("Eduardo").eloScore(1184).build();
 
-    antonio.updateMyEloScore(maria, I_LIKED_THAT_PERSON);
-    obtained = antonio.getEloScore();
-    expected = 2371;
-    assertEquals(expected, obtained);
+		paola.giveLikeTo(eduardo);
+		eduardo.receiveLikeFrom(paola);
 
-    maria.updateMyEloScore(antonio, THAT_PERSON_LIKED_ME);
-    obtained = maria.getEloScore();
-    expected = 2029;
-    assertEquals(expected, obtained);
+		Integer obtainedEloScoreFromPaola = paola.getEloScore();
+		Integer expectedEloScoreFromPaola = 1198;
+		assertEquals(expectedEloScoreFromPaola, obtainedEloScoreFromPaola);
 
-    maria.updateMyEloScore(antonio, I_DISLIKED_THAT_PERSON);
-    obtained = maria.getEloScore();
-    expected = 2057;
-    assertEquals(expected, obtained);
+		Integer obtainedEloScoreFromEduardo = eduardo.getEloScore();
+		Integer expectedEloScoreFromEduardo = 1201;
+		assertEquals(expectedEloScoreFromEduardo, obtainedEloScoreFromEduardo);
+	}
 
-    antonio.updateMyEloScore(maria, THAT_PERSON_DISLIKED_ME);
-    obtained = antonio.getEloScore();
-    expected = 2344;
-    assertEquals(expected, obtained);
+	@Test
+	public void shouldUpdateEloScoreAfterGabrielaGivesLikeToRoberto() {
+		Person gabriela = new Person.Builder().name("Gabriela").eloScore(1200).build();
+		Person roberto = new Person.Builder().name("Roberto").eloScore(1000).build();
 
-    jose.updateMyEloScore(cassia, I_LIKED_THAT_PERSON);
-    obtained = jose.getEloScore();
-    expected = 1184;
-    assertEquals(expected, obtained);
+		gabriela.giveLikeTo(roberto);
+		roberto.receiveLikeFrom(gabriela);
 
-    cassia.updateMyEloScore(jose, THAT_PERSON_LIKED_ME);
-    obtained = cassia.getEloScore();
-    expected = 1215;
-    assertEquals(expected, obtained);
+		Integer obtainedEloScoreFromGabriela = gabriela.getEloScore();
+		Integer expectedEloScoreFromGabriela = 1176;
+		assertEquals(expectedEloScoreFromGabriela, obtainedEloScoreFromGabriela);
 
-    cassia.updateMyEloScore(jose, I_LIKED_THAT_PERSON);
-    obtained = cassia.getEloScore();
-    expected = 1198;
-    assertEquals(expected, obtained);
+		Integer obtainedEloScoreFromRoberto = roberto.getEloScore();
+		Integer expectedEloScoreFromRoberto = 1023;
+		assertEquals(expectedEloScoreFromRoberto, obtainedEloScoreFromRoberto);
+	}
 
-    jose.updateMyEloScore(cassia, THAT_PERSON_LIKED_ME);
-    obtained = jose.getEloScore();
-    expected = 1201;
-    assertEquals(expected, obtained);
+	@Test
+	public void shouldUpdateEloScoreAfterBrunaGivesLikeToAlex() {
+		Person bruna = new Person.Builder().name("Bruna").eloScore(1023).build();
+		Person alex = new Person.Builder().name("Alex").eloScore(1176).build();
 
-    gabriela.updateMyEloScore(roberto, I_LIKED_THAT_PERSON);
-    obtained = gabriela.getEloScore();
-    expected = 1176;
-    assertEquals(expected, obtained);
+		bruna.giveLikeTo(alex);
+		alex.receiveLikeFrom(bruna);
 
-    roberto.updateMyEloScore(gabriela, THAT_PERSON_LIKED_ME);
-    obtained = roberto.getEloScore();
-    expected = 1023;
-    assertEquals(expected, obtained);
+		Integer obtainedEloScoreFromBruna = bruna.getEloScore();
+		Integer expectedEloScoreFromBruna = 1014;
+		assertEquals(expectedEloScoreFromBruna, obtainedEloScoreFromBruna);
 
-    roberto.updateMyEloScore(gabriela, I_LIKED_THAT_PERSON);
-    obtained = roberto.getEloScore();
-    expected = 1014;
-    assertEquals(expected, obtained);
-
-    gabriela.updateMyEloScore(roberto, THAT_PERSON_LIKED_ME);
-    obtained = gabriela.getEloScore();
-    expected = 1185;
-    assertEquals(expected, obtained);
-  }
+		Integer obtainedEloScoreFromAlex = alex.getEloScore();
+		Integer expectedEloScoreFromAlex = 1185;
+		assertEquals(expectedEloScoreFromAlex, obtainedEloScoreFromAlex);
+	}
 
 }
