@@ -1,6 +1,7 @@
 package br.com.ayranandrade.pseudotinder.models;
 
 import java.time.Instant;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,61 +11,48 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "streets")
 public class Street {
-    
-  @Id 
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "street_id")
-  private Integer id;
-  
-  @Column(nullable = false, length = 60)
-  @NotBlank
-  @Size(max = 60)
-  private String name;
-  
-  @Column(nullable = false, name = "created_at")
-  @NotNull
-  private Instant createdAt = Instant.now();
-  
-  @ManyToOne(fetch = FetchType.EAGER, optional = false)
-  @JoinColumn(name = "region_id", referencedColumnName = "region_id")
-  private Region region;
 
-  public Integer getId() {
-    return id;
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "street_id")
+	private Integer id;
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	@NotEmpty
+	@Size(max = 60)
+	private String name;
 
-  public String getName() {
-    return name;
-  }
+	@NotNull
+	private Instant createdAt;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "region_id", referencedColumnName = "region_id")
+	private Region regionInWhichStreetLies;
 
-  public Instant getCreatedAt() {
-    return createdAt;
-  }
+	private Street() {
+		initializeAttributes();
+	}
 
-  public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
-  }
+	public Street(String name, Region region) {
+		this.name = name;
+		regionInWhichStreetLies = region;
+		initializeAttributes();
+	}
 
-  public Region getRegion() {
-    return region;
-  }
+	private void initializeAttributes() {
+		createdAt = Instant.now();
+	}
 
-  public void setRegion(Region region) {
-    this.region = region;
-  }
+	@Override
+	public String toString() {
+		return "Street [id=" + id + ", name=" + name + ", createdAt="
+				+ createdAt + ", region=" + regionInWhichStreetLies + "]";
+	}
+
 }
