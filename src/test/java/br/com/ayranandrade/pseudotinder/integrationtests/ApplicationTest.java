@@ -9,7 +9,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 
 import br.com.ayranandrade.pseudotinder.AbstractSpringBootTest;
-import br.com.ayranandrade.pseudotinder.controllers.HomeController;
+import br.com.ayranandrade.pseudotinder.controllers.HomePageController;
 
 public class ApplicationTest extends AbstractSpringBootTest {
 	
@@ -20,7 +20,7 @@ public class ApplicationTest extends AbstractSpringBootTest {
     private TestRestTemplate restTemplate;
     
 	@Autowired
-    private HomeController homeController;
+    private HomePageController homeController;
 
 	@Test
 	public void contextLoads() {
