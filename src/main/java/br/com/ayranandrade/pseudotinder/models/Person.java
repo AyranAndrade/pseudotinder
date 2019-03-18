@@ -157,6 +157,10 @@ public class Person {
 		return id;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
 	@Override
 	public String toString() {
 		return "People{" + "id=" + id + ", name=" + myNameThatIWantOtherPeopleSee + ", birthDate=" + birthDate + ", aboutMe="

@@ -1,9 +1,11 @@
 package br.com.ayranandrade.pseudotinder.repositories;
 
-import br.com.ayranandrade.pseudotinder.models.Person;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import br.com.ayranandrade.pseudotinder.models.Person;
+
 public interface PersonRepository extends JpaRepository<Person, Integer> {
-	public Person findByUsername(String username);
+	public Optional<Person> findByUsername(String username);
 }
