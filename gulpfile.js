@@ -7,7 +7,7 @@ function bootstrap() {
 }
 
 function css() {
-  return src('src/main/resources/static/css/*.css')
+  return src('src/main/resources/css/*.css')
     .pipe(minifyCSS())
     .pipe(dest('src/main/resources/build/css/'))
 }
