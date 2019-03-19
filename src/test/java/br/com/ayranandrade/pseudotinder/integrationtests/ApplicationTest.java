@@ -12,26 +12,26 @@ import br.com.ayranandrade.pseudotinder.AbstractSpringBootTest;
 import br.com.ayranandrade.pseudotinder.controllers.HomePageController;
 
 public class ApplicationTest extends AbstractSpringBootTest {
-	
-	@LocalServerPort
-    private int port;
 
-    @Autowired
-    private TestRestTemplate restTemplate;
-    
+	@LocalServerPort
+	private int port;
+
 	@Autowired
-    private HomePageController homeController;
+	private TestRestTemplate restTemplate;
+
+	@Autowired
+	private HomePageController homeController;
 
 	@Test
 	public void contextLoads() {
 		assertNotNull(homeController);
 	}
-	
+
 	@Test
-    public void appMustBeRunningAndRespondingWithLoginPage() throws Exception {
-		String pageReturned = this.restTemplate.getForObject("http://localhost:" + port + "/", 
+	public void appMustBeRunningAndRespondingWithLoginPage() throws Exception {
+		String pageReturned = this.restTemplate.getForObject("http://localhost:" + port + "/",
 				String.class);
-		assertTrue(pageReturned.contains("Bem-vindo ao Pseudotinder!"));
-    }
+		assertTrue(pageReturned.contains("Pseudotinder"));
+	}
 
 }
