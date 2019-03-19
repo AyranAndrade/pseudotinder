@@ -1,6 +1,7 @@
 package br.com.ayranandrade.pseudotinder.models;
 
 import java.time.Instant;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,46 +18,46 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "regions")
 public class Region {
-    
-  @Id 
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "region_id")
-  private Integer id;
-  
-  @NotEmpty
-  @Size(max = 30)
-  private String name;
-  
-  @NotNull
-  private Instant createdAt;
-  
-  @ManyToOne(fetch = FetchType.EAGER, optional = false)
-  @JoinColumn(name = "city_id", referencedColumnName = "city_id")
-  private City cityInWhichRegionLies;
 
-  private Region() {
-    initializeAttributes();
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "region_id")
+	private Integer id;
 
-  private void initializeAttributes() {
-    createdAt = Instant.now();
-  }
+	@NotEmpty
+	@Size(max = 30)
+	private String name;
 
-  public Region(String name, City city) {
-    this.name = name;
-    cityInWhichRegionLies = city;
-    initializeAttributes();
-  }
+	@NotNull
+	private Instant createdAt;
 
-  public Integer getId() {
-    return id;
-  }  
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "city_id", referencedColumnName = "city_id")
+	private City cityInWhichRegionLies;
 
-  @Override
-  public String toString() {
-    return "Region [id=" + id + ", name=" + name + ", createdAt=" 
-    + createdAt + ", cityInWhichRegionLies=" + cityInWhichRegionLies + "]";
-  }
+	protected Region() {
+		initializeAttributes();
+	}
+
+	private void initializeAttributes() {
+		createdAt = Instant.now();
+	}
+
+	public Region(String name, City city) {
+		this.name = name;
+		cityInWhichRegionLies = city;
+		initializeAttributes();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Region [id=" + id + ", name=" + name + ", createdAt="
+				+ createdAt + ", cityInWhichRegionLies=" + cityInWhichRegionLies + "]";
+	}
 
 }
 

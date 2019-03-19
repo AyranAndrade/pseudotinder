@@ -29,7 +29,7 @@ public class State {
 	@NotNull
 	private Instant createdAt;
 
-	private State() {
+	protected State() {
 		initializeAttributes();
 	}
 

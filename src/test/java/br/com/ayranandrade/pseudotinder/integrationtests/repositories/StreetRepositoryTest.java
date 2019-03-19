@@ -2,12 +2,13 @@ package br.com.ayranandrade.pseudotinder.integrationtests.repositories;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ayranandrade.pseudotinder.AbstractSpringBootTest;
 import br.com.ayranandrade.pseudotinder.models.Region;
@@ -15,6 +16,7 @@ import br.com.ayranandrade.pseudotinder.models.Street;
 import br.com.ayranandrade.pseudotinder.repositories.RegionRepository;
 import br.com.ayranandrade.pseudotinder.repositories.StreetRepository;
 
+@Transactional
 public class StreetRepositoryTest extends AbstractSpringBootTest {
 
 	@Autowired
@@ -41,9 +43,10 @@ public class StreetRepositoryTest extends AbstractSpringBootTest {
 		assertTrue(streetDescription.contains("Paulista Avenue"));
 	}
 
-	@Test(expected = DataIntegrityViolationException.class)
-	public void shouldNotDeleteStreetFromDatabaseIfItIsUsed() {
-		streetRepository.deleteById(10);
+	@Test(expected = NoSuchElementException.class)
+	public void shouldDeleteStreetFromDatabase() {
+		streetRepository.deleteById(12);
+		streetRepository.findById(12).orElseThrow();
 	}
 
 }

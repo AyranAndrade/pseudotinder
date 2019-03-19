@@ -16,40 +16,40 @@ import javax.validation.constraints.Size;
 @Table(name = "professions")
 public class Profession {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "profession_id")
-  private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "profession_id")
+	private Integer id;
 
-  @Column(unique = true)
-  @NotEmpty
-  @Size(max = 100)
-  private String name;
+	@Column(unique = true)
+	@NotEmpty
+	@Size(max = 100)
+	private String name;
 
-  @NotNull
-  private Instant createdAt;
+	@NotNull
+	private Instant createdAt;
 
-  private Profession() {
-    initializeAttributes();
-  }
+	protected Profession() {
+		initializeAttributes();
+	}
 
-  private void initializeAttributes() {
-    createdAt = Instant.now();
-  }
+	private void initializeAttributes() {
+		createdAt = Instant.now();
+	}
 
-  public Profession(String name) {
-    this.name = name;
-    initializeAttributes();
-  }
+	public Profession(String name) {
+		this.name = name;
+		initializeAttributes();
+	}
 
-  public Integer getId() {
-    return id;
-  }  
+	public Integer getId() {
+		return id;
+	}
 
-  @Override
-  public String toString() {
-    return "Profession [id=" + id + ", name=" + name + ", createdAt=" 
-    + createdAt + "]";
-  }
+	@Override
+	public String toString() {
+		return "Profession [id=" + id + ", name=" + name + ", createdAt="
+				+ createdAt + "]";
+	}
 
 }

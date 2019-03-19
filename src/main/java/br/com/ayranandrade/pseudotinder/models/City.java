@@ -18,28 +18,28 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "cities")
 public class City {
-    
-  @Id 
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "city_id")
-  private Integer id;
-    
-  @NotEmpty
-  @Size(max = 30)
-  private String name;
-    
-  @NotNull
-  private Instant createdAt;
-    
-  @ManyToOne(fetch = FetchType.EAGER, optional = false)
-  @JoinColumn(name = "state_id", referencedColumnName = "state_id")
-  private State stateInWhichTheCityLies;
 
-  private City() {}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "city_id")
+	private Integer id;
 
-  @Override
-  public String toString() {
-	  return "City [id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", stateInWhichTheCityLies="
-			  + stateInWhichTheCityLies + "]";
-  }
+	@NotEmpty
+	@Size(max = 30)
+	private String name;
+
+	@NotNull
+	private Instant createdAt;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "state_id", referencedColumnName = "state_id")
+	private State stateInWhichTheCityLies;
+
+	protected City() {}
+
+	@Override
+	public String toString() {
+		return "City [id=" + id + ", name=" + name + ", createdAt=" + createdAt + ", stateInWhichTheCityLies="
+				+ stateInWhichTheCityLies + "]";
+	}
 }

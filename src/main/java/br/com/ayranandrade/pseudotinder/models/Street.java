@@ -31,11 +31,11 @@ public class Street {
 	@NotNull
 	private Instant createdAt;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "region_id", referencedColumnName = "region_id")
 	private Region regionInWhichStreetLies;
 
-	private Street() {
+	protected Street() {
 		initializeAttributes();
 	}
 

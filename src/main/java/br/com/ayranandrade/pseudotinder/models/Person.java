@@ -82,19 +82,19 @@ public class Person {
 	@NotNull
 	private Integer peopleThatILikeMustHaveAgeLesserThan;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "sexual_orientation_id")
 	private SexualOrientation mySexualOrientation;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "gender_id")
 	private Gender myGender;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "profession_id")
 	private Profession myProfession;
 
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "street_id")
 	private Street whereILive;
 

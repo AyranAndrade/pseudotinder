@@ -16,40 +16,40 @@ import javax.validation.constraints.NotNull;
 @Table(name = "sexual_orientations")
 public class SexualOrientation {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "sexual_orientation_id")
-  private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "sexual_orientation_id")
+	private Integer id;
 
-  @NotNull
-  @Enumerated(EnumType.STRING)
-  @Column(unique = true)
-  private SexualOrientationType name;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(unique = true)
+	private SexualOrientationType name;
 
-  @NotNull
-  private Instant createdAt;
+	@NotNull
+	private Instant createdAt;
 
-  private SexualOrientation() {
-    initiliazeAttributes();
-  }
+	protected SexualOrientation() {
+		initiliazeAttributes();
+	}
 
-  private void initiliazeAttributes() {
-    createdAt = Instant.now();
-  }
+	private void initiliazeAttributes() {
+		createdAt = Instant.now();
+	}
 
-  public SexualOrientation(SexualOrientationType type) {
-    name = type;
-    initiliazeAttributes();
-  }
+	public SexualOrientation(SexualOrientationType type) {
+		name = type;
+		initiliazeAttributes();
+	}
 
-  public Integer getId() {
-    return id;
-  }
+	public Integer getId() {
+		return id;
+	}
 
-  @Override
-  public String toString() {
-    return "SexualOrientation [id=" + id + ", name=" + name + ", createdAt=" 
-    + createdAt + "]";
-  }
+	@Override
+	public String toString() {
+		return "SexualOrientation [id=" + id + ", name=" + name + ", createdAt="
+				+ createdAt + "]";
+	}
 
 }

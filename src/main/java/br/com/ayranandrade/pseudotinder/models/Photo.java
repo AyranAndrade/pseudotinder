@@ -19,48 +19,48 @@ import javax.validation.constraints.Size;
 @Table(name = "photos")
 public class Photo {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "photo_id")
-  private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "photo_id")
+	private Integer id;
 
-  @NotEmpty
-  @Size(max = 1024)
-  private String urlOrPath;
+	@NotEmpty
+	@Size(max = 1024)
+	private String urlOrPath;
 
-  @NotNull
-  private Instant uploadAt;
+	@NotNull
+	private Instant uploadAt;
 
-  @NotNull
-  private Boolean active;
+	@NotNull
+	private Boolean active;
 
-  @ManyToOne(fetch = FetchType.EAGER, optional = false)
-  @JoinColumn(name = "people_id")
-  private Person uploader;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "people_id")
+	private Person uploader;
 
-  private Photo() {
-    initiliazeAttributes();
-  }
+	private Photo() {
+		initiliazeAttributes();
+	}
 
-  private void initiliazeAttributes() {
-    active = true;
-    uploadAt = Instant.now();
-  }
+	private void initiliazeAttributes() {
+		active = true;
+		uploadAt = Instant.now();
+	}
 
-  public Photo(String urlOrPath, Person uploader) {
-    this.urlOrPath = urlOrPath;
-    this.uploader = uploader;
-    initiliazeAttributes();
-  }
+	public Photo(String urlOrPath, Person uploader) {
+		this.urlOrPath = urlOrPath;
+		this.uploader = uploader;
+		initiliazeAttributes();
+	}
 
-  public Integer getId() {
-    return id;
-  }  
+	public Integer getId() {
+		return id;
+	}
 
-  @Override
-  public String toString() {
-    return "Photo [id=" + id + ", urlOrPath=" + urlOrPath + ", uploadAt=" 
-    + uploadAt + ", active=" + active + ", uploader=" + uploader + "]";
-  }
+	@Override
+	public String toString() {
+		return "Photo [id=" + id + ", urlOrPath=" + urlOrPath + ", uploadAt="
+				+ uploadAt + ", active=" + active + ", uploader=" + uploader + "]";
+	}
 
 }
