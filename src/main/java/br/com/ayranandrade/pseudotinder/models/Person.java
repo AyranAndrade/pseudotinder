@@ -38,10 +38,9 @@ public class Person {
 	@Column(name = "people_id")
 	private Integer id;
 
-	@Column(name = "name")
 	@NotEmpty
 	@Size(max = 60)
-	private String myNameThatIWantOtherPeopleSee;
+	private String name;
 
 	@Column(name = "birth_date")
 	@NotNull
@@ -98,11 +97,7 @@ public class Person {
 	@JoinColumn(name = "street_id")
 	private Street whereILive;
 
-	protected Person() {
-		initializeAttributes();
-	}
-
-	private void initializeAttributes() {
+	public Person() {
 		createdAt = Instant.now();
 		active = true;
 		eloScore = DEFAULT_STARTING_ELO_RATING;
@@ -149,98 +144,113 @@ public class Person {
 		return new BigDecimal(result).round(toThreeDecimalPlaces);
 	}
 
-	public Integer getEloScore() {
-		return eloScore;
-	}
-
 	public Integer getId() {
 		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public LocalDate getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String getMyDescriptionAboutMyself() {
+		return myDescriptionAboutMyself;
+	}
+
+	public void setMyDescriptionAboutMyself(String myDescriptionAboutMyself) {
+		this.myDescriptionAboutMyself = myDescriptionAboutMyself;
 	}
 
 	public String getUsername() {
 		return username;
 	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Integer getEloScore() {
+		return eloScore;
+	}
+
+	public void setEloScore(Integer eloScore) {
+		this.eloScore = eloScore;
+	}
+
+	public BigDecimal getMaxDistanceToLookForPeopleInKilometers() {
+		return maxDistanceToLookForPeopleInKilometers;
+	}
+
+	public void setMaxDistanceToLookForPeopleInKilometers(BigDecimal maxDistanceToLookForPeopleInKilometers) {
+		this.maxDistanceToLookForPeopleInKilometers = maxDistanceToLookForPeopleInKilometers;
+	}
+
+	public Integer getPeopleThatILikeMustHaveAgeBiggerThan() {
+		return peopleThatILikeMustHaveAgeBiggerThan;
+	}
+
+	public void setPeopleThatILikeMustHaveAgeBiggerThan(Integer peopleThatILikeMustHaveAgeBiggerThan) {
+		this.peopleThatILikeMustHaveAgeBiggerThan = peopleThatILikeMustHaveAgeBiggerThan;
+	}
+
+	public Integer getPeopleThatILikeMustHaveAgeLesserThan() {
+		return peopleThatILikeMustHaveAgeLesserThan;
+	}
+
+	public void setPeopleThatILikeMustHaveAgeLesserThan(Integer peopleThatILikeMustHaveAgeLesserThan) {
+		this.peopleThatILikeMustHaveAgeLesserThan = peopleThatILikeMustHaveAgeLesserThan;
+	}
+
+	public SexualOrientation getMySexualOrientation() {
+		return mySexualOrientation;
+	}
+
+	public void setMySexualOrientation(SexualOrientation mySexualOrientation) {
+		this.mySexualOrientation = mySexualOrientation;
+	}
+
+	public Gender getMyGender() {
+		return myGender;
+	}
+
+	public void setMyGender(Gender myGender) {
+		this.myGender = myGender;
+	}
+
+	public Profession getMyProfession() {
+		return myProfession;
+	}
+
+	public void setMyProfession(Profession myProfession) {
+		this.myProfession = myProfession;
+	}
+
+	public Street getWhereILive() {
+		return whereILive;
+	}
+
+	public void setWhereILive(Street whereILive) {
+		this.whereILive = whereILive;
+	}
+
 	@Override
 	public String toString() {
-		return "People{" + "id=" + id + ", name=" + myNameThatIWantOtherPeopleSee + ", birthDate=" + birthDate + ", aboutMe="
+		return "People{" + "id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", aboutMe="
 				+ myDescriptionAboutMyself + ", username=" + username + ", eloScore=" + eloScore + ", maxDistance="
 				+ maxDistanceToLookForPeopleInKilometers + ", createdAt=" + createdAt + ", active=" + active + ", age start="
 				+ peopleThatILikeMustHaveAgeBiggerThan + ", age end=" + peopleThatILikeMustHaveAgeLesserThan + ", sexualOrientation=" + mySexualOrientation
 				+ ", gender=" + myGender + ", profession=" + myProfession + ", street=" + whereILive + '}';
-	}
-
-	public static class Builder {
-		private final Person person;
-
-		public Builder() {
-			person = new Person();
-		}
-
-		public Builder name(String name) {
-			person.myNameThatIWantOtherPeopleSee = name;
-			return this;
-		}
-
-		public Builder birthDate(LocalDate birthDate) {
-			person.birthDate = birthDate;
-			return this;
-		}
-
-		public Builder aboutMe(String aboutMe) {
-			person.myDescriptionAboutMyself = aboutMe;
-			return this;
-		}
-
-		public Builder username(String username) {
-			person.username = username;
-			return this;
-		}
-
-		public Builder maxDistance(BigDecimal maxDistance) {
-			person.maxDistanceToLookForPeopleInKilometers = maxDistance;
-			return this;
-		}
-
-		public Builder maxAge(Integer maxAge) {
-			person.peopleThatILikeMustHaveAgeLesserThan = maxAge;
-			return this;
-		}
-
-		public Builder minAge(Integer minAge) {
-			person.peopleThatILikeMustHaveAgeBiggerThan = minAge;
-			return this;
-		}
-
-		public Builder sexualOrientation(SexualOrientation sexualOrientation) {
-			person.mySexualOrientation = sexualOrientation;
-			return this;
-		}
-
-		public Builder gender(Gender gender) {
-			person.myGender = gender;
-			return this;
-		}
-
-		public Builder profession(Profession profession) {
-			person.myProfession = profession;
-			return this;
-		}
-
-		public Builder street(Street street) {
-			person.whereILive = street;
-			return this;
-		}
-
-		public Builder eloScore(Integer eloScore) {
-			person.eloScore = eloScore;
-			return this;
-		}
-
-		public Person build() {
-			return person;
-		}
-
 	}
 
 }

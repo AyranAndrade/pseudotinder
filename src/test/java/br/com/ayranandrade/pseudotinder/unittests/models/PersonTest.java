@@ -11,8 +11,13 @@ public class PersonTest extends AbstractSpringBootTest {
 
 	@Test
 	public void shouldUpdateEloScoreAfterGabrielGivesLikeToAna() {
-		Person gabriel = new Person.Builder().name("Gabriel").eloScore(2500).build();
-		Person ana = new Person.Builder().name("Ana").eloScore(2200).build();
+		Person gabriel = new Person();
+		gabriel.setName("Gabriel");
+		gabriel.setEloScore(2500);
+
+		Person ana = new Person();
+		ana.setName("Ana");
+		ana.setEloScore(2200);
 
 		gabriel.giveLikeTo(ana);
 		ana.receiveLikeFrom(gabriel);
@@ -28,8 +33,13 @@ public class PersonTest extends AbstractSpringBootTest {
 
 	@Test
 	public void shouldUpdateEloScoreAfterJulianaGivesDislikeToFabio() {
-		Person fabio = new Person.Builder().name("Fabio").eloScore(2473).build();
-		Person juliana = new Person.Builder().name("Juliana").eloScore(2226).build();
+		Person fabio = new Person();
+		fabio.setName("Fabio");
+		fabio.setEloScore(2473);
+
+		Person juliana = new Person();
+		juliana.setName("Juliana");
+		juliana.setEloScore(2226);
 
 		juliana.giveDislikeTo(fabio);
 		fabio.receiveDislikeFrom(juliana);
@@ -45,8 +55,13 @@ public class PersonTest extends AbstractSpringBootTest {
 
 	@Test
 	public void shouldUpdateEloScoreAfterAntonioGivesLikeToMaria() {
-		Person antonio = new Person.Builder().name("Antônio").eloScore(2400).build();
-		Person maria = new Person.Builder().name("Maria").eloScore(2000).build();
+		Person antonio = new Person();
+		antonio.setName("Antônio");
+		antonio.setEloScore(2400);
+
+		Person maria = new Person();
+		maria.setName("Maria");
+		maria.setEloScore(2000);
 
 		antonio.giveLikeTo(maria);
 		maria.receiveLikeFrom(antonio);
@@ -62,8 +77,13 @@ public class PersonTest extends AbstractSpringBootTest {
 
 	@Test
 	public void shouldUpdateEloScoreAfterStefaniGivesDislikeToAndre() {
-		Person andre = new Person.Builder().name("André").eloScore(2371).build();
-		Person stefani = new Person.Builder().name("Stefani").eloScore(2029).build();
+		Person andre = new Person();
+		andre.setName("André");
+		andre.setEloScore(2371);
+
+		Person stefani = new Person();
+		stefani.setName("Stefani");
+		stefani.setEloScore(2029);
 
 		stefani.giveDislikeTo(andre);
 		andre.receiveDislikeFrom(stefani);
@@ -79,8 +99,13 @@ public class PersonTest extends AbstractSpringBootTest {
 
 	@Test
 	public void shouldUpdateEloScoreAfterJoseGivesLikeToCassia() {
-		Person jose = new Person.Builder().name("José").eloScore(1200).build();
-		Person cassia = new Person.Builder().name("Cássia").eloScore(1200).build();
+		Person jose = new Person();
+		jose.setName("José");
+		jose.setEloScore(1200);
+
+		Person cassia = new Person();
+		cassia.setName("Cássia");
+		cassia.setEloScore(1200);
 
 		jose.giveLikeTo(cassia);
 		cassia.receiveLikeFrom(jose);
@@ -96,8 +121,13 @@ public class PersonTest extends AbstractSpringBootTest {
 
 	@Test
 	public void shouldUpdateEloScoreAfterPaolaGivesLikeToEduardo() {
-		Person paola = new Person.Builder().name("Paola").eloScore(1215).build();
-		Person eduardo = new Person.Builder().name("Eduardo").eloScore(1184).build();
+		Person paola = new Person();
+		paola.setName("Paola");
+		paola.setEloScore(1215);
+
+		Person eduardo = new Person();
+		eduardo.setName("Eduardo");
+		eduardo.setEloScore(1184);
 
 		paola.giveLikeTo(eduardo);
 		eduardo.receiveLikeFrom(paola);
@@ -113,8 +143,13 @@ public class PersonTest extends AbstractSpringBootTest {
 
 	@Test
 	public void shouldUpdateEloScoreAfterGabrielaGivesLikeToRoberto() {
-		Person gabriela = new Person.Builder().name("Gabriela").eloScore(1200).build();
-		Person roberto = new Person.Builder().name("Roberto").eloScore(1000).build();
+		Person gabriela = new Person();
+		gabriela.setName("Gabriela");
+		gabriela.setEloScore(1200);
+
+		Person roberto = new Person();
+		roberto.setName("Roberto");
+		roberto.setEloScore(1000);
 
 		gabriela.giveLikeTo(roberto);
 		roberto.receiveLikeFrom(gabriela);
@@ -130,8 +165,13 @@ public class PersonTest extends AbstractSpringBootTest {
 
 	@Test
 	public void shouldUpdateEloScoreAfterBrunaGivesLikeToAlex() {
-		Person bruna = new Person.Builder().name("Bruna").eloScore(1023).build();
-		Person alex = new Person.Builder().name("Alex").eloScore(1176).build();
+		Person bruna = new Person();
+		bruna.setName("Bruna");
+		bruna.setEloScore(1023);
+
+		Person alex = new Person();
+		alex.setName("Alex");
+		alex.setEloScore(1176);
 
 		bruna.giveLikeTo(alex);
 		alex.receiveLikeFrom(bruna);

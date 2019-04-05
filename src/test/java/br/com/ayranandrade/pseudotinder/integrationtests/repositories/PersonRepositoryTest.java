@@ -77,19 +77,18 @@ public class PersonRepositoryTest extends AbstractSpringBootTest {
 				.orElseThrow(() -> new AssertionError("Sexuality "
 						+ HETEROSEXUAL.name() + " not found."));
 
-		Person person = new Person.Builder()
-				.name("John Doe")
-				.birthDate(LocalDate.now())
-				.aboutMe("I am a nice guy.")
-				.username("johndoe")
-				.maxDistance(TEN)
-				.maxAge(30)
-				.minAge(18)
-				.sexualOrientation(sexualOrientation)
-				.gender(gender)
-				.profession(profession)
-				.street(street)
-				.build();
+		Person person = new Person();
+		person.setName("John Doe");
+		person.setBirthDate(LocalDate.now());
+		person.setMyDescriptionAboutMyself("I am a nice guy.");
+		person.setUsername("johndoe");
+		person.setMaxDistanceToLookForPeopleInKilometers(TEN);
+		person.setPeopleThatILikeMustHaveAgeLesserThan(30);
+		person.setPeopleThatILikeMustHaveAgeBiggerThan(18);
+		person.setMySexualOrientation(sexualOrientation);
+		person.setMyGender(gender);
+		person.setMyProfession(profession);
+		person.setWhereILive(street);
 
 		personRepository.save(person);
 
