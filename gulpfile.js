@@ -1,4 +1,4 @@
-const { src, dest, parallel } = require('gulp');
+const { src, dest, parallel, watch } = require('gulp');
 const minifyCSS = require('gulp-csso');
 
 function bootstrap() {
@@ -12,6 +12,11 @@ function css() {
     .pipe(dest('src/main/resources/build/css/'))
 }
 
+function watchFiles() {
+  return watch('src/main/resources/css/*.css', css);
+}
+
 exports.css = css;
 exports.bootstrap = bootstrap;
+exports.watch = watchFiles;
 exports.default = parallel(bootstrap, css);
