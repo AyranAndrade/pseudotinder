@@ -45,7 +45,7 @@ public class Application extends WebSecurityConfigurerAdapter implements Command
 		.formLogin()
 		.loginPage("/")
 		.loginProcessingUrl("/login")
-		.defaultSuccessUrl("/register", false)
+		.defaultSuccessUrl("/register/one", false)
 		.failureUrl("/?error=true")
 		.and()
 		.logout()

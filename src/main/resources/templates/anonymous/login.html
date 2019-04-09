@@ -5,10 +5,10 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-        <link th:href="@{/css/login.css}" rel="stylesheet" />
+        <link th:href="@{/css/main.css}" rel="stylesheet" />
     </head>
     <body class="text-center">
-        <form action="#" th:action="@{/login}" method="post" class="form-signin border">
+        <form action="#" th:action="@{/login}" method="post" class="border">
 
 			<h1 class="h3 mb-3 font-weight-normal">Entre na sua conta</h1>
 
@@ -22,7 +22,7 @@
               Nome de usuário não existe.
             </div>
 
-			<a th:href="@{/register}">Ainda não sou cadastrado</a>
+			<a th:href="@{/register/one}">Ainda não sou cadastrado</a>
 
         </form>
     </body>

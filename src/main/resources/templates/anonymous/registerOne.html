@@ -1,15 +1,108 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Registre-se</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-    </head>
-    <body>
-    <h1>Register!!!</h1>
-        <form action="#" th:action="@{/register}" th:object="${people}">
-            
-        </form>
-    </body>
+<head>
+<title>Pseudotinder</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+<link th:href="@{/css/registerOne.css}" rel="stylesheet" />
+</head>
+<body class="text-center">
+	<form action="#" th:action="@{/register}" th:object="${person}"
+		method="post" class="border">
+
+		<h1 class="h3  font-weight-normal">Conhecendo você...</h1>
+
+		<div class="row">
+			<div class="col">
+
+				<div class="form-group">
+					<label for="name">Qual é o seu nome?</label> <input type="text"
+						class="form-control" id="name" th:field="*{name}" required
+						autofocus placeholder="Digite o seu nome">
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+
+				<div class="form-group">
+					<label for="birthDate">Quando você nasceu?</label> <input
+						type="date" class="form-control" id="birthDate"
+						th:field="*{birthDate}" required
+						placeholder="Digite a sua data de aniverśario">
+				</div>
+
+			</div>
+
+			<div class="col">
+
+				<div class="form-group">
+					<label for="username">Digite um nome de usuário para se
+						logar</label> <input type="text" class="form-control" id="username"
+						th:field="*{username}" required
+						placeholder="Digite o seu nome de usuário">
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+
+				<div class="form-group">
+					<label for="maxAge">Mostre-me pessoas com idade menor que</label> <input
+						type="number" class="form-control" id="maxAge" max="100" min="18"
+						th:field="*{peopleThatILikeMustHaveAgeLesserThan}" required
+						placeholder="Digite a idade máxima">
+				</div>
+
+			</div>
+
+			<div class="col">
+
+				<div class="form-group">
+					<label for="minAge">Mostre-me pessoas com idade maior que</label> <input
+						type="number" class="form-control" id="minAge" min="18"
+						th:field="*{peopleThatILikeMustHaveAgeBiggerThan}" required
+						placeholder="Digite a idade mínima">
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+
+				<div class="form-group">
+					<label for="maxDistance">Distância máxima em KM para
+						procurar pessoas</label> <input type="number" class="form-control"
+						id="maxDistance"
+						th:field="*{maxDistanceToLookForPeopleInKilometers}" required
+						placeholder="Digite a distância máxima">
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+
+				<div class="form-group">
+					<label for="myDescription">Fale um pouco sobre você</label>
+					<textarea class="form-control" id="myDescription" rows="3"
+						th:field="*{myDescriptionAboutMyself}" required
+						placeholder="Descreva a si próprio(a)"></textarea>
+				</div>
+
+			</div>
+		</div>
+
+		<button type="submit" class="btn btn-lg btn-primary btn-block">Próximo</button>
+
+	</form>
+</body>
 </html>
