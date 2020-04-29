@@ -15,6 +15,6 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "gulp-csso": "^3.0.1",
-    "jquery": "^3.3.1"
+    "jquery": "^3.5.0"
   }
 }
